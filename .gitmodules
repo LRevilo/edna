@@ -1,0 +1,6 @@
+[submodule "EDNA/vendor/spdlog"]
+	path = EDNA/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "EDNA/vendor/GLFW"]
+	path = EDNA/vendor/GLFW
+	url = https://github.com/Lrevilo/GLFW

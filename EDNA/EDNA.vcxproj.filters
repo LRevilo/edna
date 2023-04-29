@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="EDNA">
+      <UniqueIdentifier>{3D11847C-2948-850D-D234-6B10BE4A010F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EDNA\Events">
+      <UniqueIdentifier>{81564C36-ED0B-C52B-7600-BF02E2B4BB2F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\EDNA.h" />
+    <ClInclude Include="src\EDNA\Application.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\EntryPoint.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Events\ApplicationEvent.h">
+      <Filter>EDNA\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Events\Event.h">
+      <Filter>EDNA\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Events\KeyEvent.h">
+      <Filter>EDNA\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Events\MouseEvent.h">
+      <Filter>EDNA\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Log.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Window.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ednapch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\EDNA\Application.cpp">
+      <Filter>EDNA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Log.cpp">
+      <Filter>EDNA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ednapch.cpp" />
+  </ItemGroup>
+</Project>
