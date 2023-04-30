@@ -37,6 +37,12 @@
     <ClInclude Include="src\EDNA\Events\MouseEvent.h">
       <Filter>EDNA\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Layer.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\LayerStack.h">
+      <Filter>EDNA</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Log.h">
       <Filter>EDNA</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Application.cpp">
+      <Filter>EDNA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Layer.cpp">
+      <Filter>EDNA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\LayerStack.cpp">
       <Filter>EDNA</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Log.cpp">

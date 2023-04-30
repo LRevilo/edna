@@ -65,16 +65,17 @@ project "EDNA"
 
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
-			symbols "On"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
-			symbols "On"
+			buildoptions "/MD"
 			optimize "On"
 
 
@@ -116,15 +117,16 @@ project "GamePrototype"
 
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
+			buildoptions "/MDd"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
-			symbols "On"
+			buildoptions "/MD"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
-			symbols "On"
+			buildoptions "/MD"
 			optimize "On"
 
