@@ -4,3 +4,6 @@
 [submodule "EDNA/vendor/GLFW"]
 	path = EDNA/vendor/GLFW
 	url = https://github.com/Lrevilo/GLFW
+[submodule "EDNA/vendor/imgui"]
+	path = EDNA/vendor/imgui
+	url = https://github.com/LRevilo/imgui

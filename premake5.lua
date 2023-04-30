@@ -15,9 +15,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "EDNA/vendor/GLFW/include"
 IncludeDir["Glad"] = "EDNA/vendor/Glad/include"
+IncludeDir["ImGui"] = "EDNA/vendor/imgui"
 
 include "EDNA/vendor/GLFW"
 include "EDNA/vendor/Glad"
+include "EDNA/vendor/imgui"
 
 project "EDNA"
 	location "EDNA"
@@ -41,13 +43,15 @@ project "EDNA"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

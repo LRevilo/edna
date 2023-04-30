@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -104,7 +104,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -132,7 +132,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -163,18 +163,22 @@
     <ClInclude Include="src\EDNA\Events\Event.h" />
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
+    <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\EDNA\Layer.h" />
     <ClInclude Include="src\EDNA\LayerStack.h" />
     <ClInclude Include="src\EDNA\Log.h" />
     <ClInclude Include="src\EDNA\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRender.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ednapch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Application.cpp" />
+    <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EDNA\Layer.cpp" />
     <ClCompile Include="src\EDNA\LayerStack.cpp" />
     <ClCompile Include="src\EDNA\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRender.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ednapch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -186,6 +190,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\Glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

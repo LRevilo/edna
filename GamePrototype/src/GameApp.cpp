@@ -10,7 +10,7 @@ public:
 
 	void OnUpdate() override
 	{
-		EDNA_INFO("Layer Update");
+		//EDNA_INFO("Layer Update");
 	}
 	void OnEvent(EDNA::Event& event) override
 	{
@@ -26,6 +26,7 @@ public:
 	GamePrototype() 
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new EDNA::ImGuiLayer());
 	}
 	~GamePrototype() 
 	{
