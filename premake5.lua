@@ -14,9 +14,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directoris relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "EDNA/vendor/GLFW/include"
+IncludeDir["Glad"] = "EDNA/vendor/Glad/include"
 
 include "EDNA/vendor/GLFW"
-
+include "EDNA/vendor/Glad"
 
 project "EDNA"
 	location "EDNA"
@@ -39,12 +40,14 @@ project "EDNA"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -55,7 +58,8 @@ project "EDNA"
 		defines
 		{
 				"EDNA_PLATFORM_WINDOWS",
-				"EDNA_BUILD_DLL"
+				"EDNA_BUILD_DLL",
+				"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

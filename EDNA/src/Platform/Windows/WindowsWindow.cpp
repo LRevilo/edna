@@ -5,6 +5,9 @@
 #include "EDNA/Events/MouseEvent.h"
 #include "EDNA/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
+
 namespace EDNA {
 
 	static bool s_GLFWInitialized = false;
@@ -43,13 +46,18 @@ namespace EDNA {
 		{
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			EDNA_CORE_ASSERT(success, "Could not intialize GLFW!");
+			EDNA_CORE_ASSERT(success, "Could not intialise GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		// Glad
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		EDNA_CORE_ASSERT(status, "Could not initialise Glad!")
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

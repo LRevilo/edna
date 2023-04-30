@@ -4,7 +4,7 @@
 
 #include "EDNA/Log.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace EDNA {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -13,6 +13,7 @@ namespace EDNA {
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
 	}
 
 	Application::~Application()
@@ -31,7 +32,8 @@ namespace EDNA {
 
 	void Application::OnEvent(Event& e)
 	{
-		EDNA_CORE_TRACE("{0}", e);
+		//EDNA_CORE_TRACE("{0}", e);
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
