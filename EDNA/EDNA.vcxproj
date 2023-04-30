@@ -161,11 +161,13 @@
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\EDNA\Input.h" />
     <ClInclude Include="src\EDNA\Layer.h" />
     <ClInclude Include="src\EDNA\LayerStack.h" />
     <ClInclude Include="src\EDNA\Log.h" />
     <ClInclude Include="src\EDNA\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRender.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ednapch.h" />
   </ItemGroup>
@@ -176,6 +178,7 @@
     <ClCompile Include="src\EDNA\LayerStack.cpp" />
     <ClCompile Include="src\EDNA\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRender.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ednapch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
