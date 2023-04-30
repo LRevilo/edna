@@ -83,8 +83,7 @@
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -95,7 +94,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\EDNA\EDNA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\EDNA\EDNA.dll ..\bin\Debug-windows-x86_64\GamePrototype</Command>
+      <Command>xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\EDNA\EDNA.dll "..\bin\Debug-windows-x86_64\GamePrototype\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -110,8 +109,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -123,7 +121,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\EDNA\EDNA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\EDNA\EDNA.dll ..\bin\Release-windows-x86_64\GamePrototype</Command>
+      <Command>xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\EDNA\EDNA.dll "..\bin\Release-windows-x86_64\GamePrototype\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -138,8 +136,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -151,7 +148,7 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\EDNA\EDNA.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\EDNA\EDNA.dll ..\bin\Dist-windows-x86_64\GamePrototype</Command>
+      <Command>xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\EDNA\EDNA.dll "..\bin\Dist-windows-x86_64\GamePrototype\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

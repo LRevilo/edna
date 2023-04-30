@@ -10,12 +10,16 @@
 	#error Unsupported OS
 #endif
 
+#ifdef EDNA_DEBUG
+	#define HZ_ENABLE_ASSERTS
+#endif
+
 #ifdef EDNA_ENABLE_ASSERTS
-#define EDNA_ASSERT(x, ...) { if(!(x)) { EDNA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#define EDNA_CORE_ASSERT(x, ...) { if(!(x)) { EDNA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define EDNA_ASSERT(x, ...) { if(!(x)) { EDNA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define EDNA_CORE_ASSERT(x, ...) { if(!(x)) { EDNA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
-#define EDNA_ASSERT(x, ...)
-#define EDNA_CORE_ASSERT(x, ...)
+	#define EDNA_ASSERT(x, ...)
+	#define EDNA_CORE_ASSERT(x, ...)
 #endif
 
 #define BIT(x) (1 << x)

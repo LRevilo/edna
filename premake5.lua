@@ -25,6 +25,7 @@ project "EDNA"
 	location "EDNA"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -57,7 +58,6 @@ project "EDNA"
 
 	filter "system:windows"
 		cppdialect "C++20"
-		staticruntime "On"
 		systemversion "latest"
 		defines
 		{
@@ -68,31 +68,31 @@ project "EDNA"
 
 		postbuildcommands
 		{
-			("{COPYDIR} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/GamePrototype")
+			("{COPYDIR} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/GamePrototype/\"")
 		}
 
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 
 project "GamePrototype"
 	location "GamePrototype"
 	kind "ConsoleApp"
-	
 	language "C++"
-
+	staticruntime "off"
+	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -115,7 +115,6 @@ project "GamePrototype"
 
 	filter "system:windows"
 		cppdialect "C++20"
-		staticruntime "On"
 		systemversion "latest"
 		defines
 		{
@@ -125,16 +124,16 @@ project "GamePrototype"
 
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
