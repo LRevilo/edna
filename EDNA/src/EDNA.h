@@ -7,6 +7,10 @@
 #include "EDNA/Layer.h"
 #include "EDNA/Log.h"	
 
+#include "EDNA/Input.h"
+#include "EDNA/KeyCodes.h"
+#include "EDNA/MouseButtonCodes.h"
+
 #include "EDNA/ImGui/ImGuiLayer.h"
 
 // EntryPoint -------------

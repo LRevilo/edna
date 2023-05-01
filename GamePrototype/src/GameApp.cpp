@@ -26,7 +26,7 @@ public:
 	GamePrototype() 
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new EDNA::ImGuiLayer());
+
 	}
 	~GamePrototype() 
 	{

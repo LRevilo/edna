@@ -7,3 +7,6 @@
 [submodule "EDNA/vendor/imgui"]
 	path = EDNA/vendor/imgui
 	url = https://github.com/LRevilo/imgui
+[submodule "EDNA/vendor/glm"]
+	path = EDNA/vendor/glm
+	url = https://github.com/g-truc/glm
