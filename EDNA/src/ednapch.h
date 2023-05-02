@@ -17,6 +17,7 @@
 #include "EDNA/Log.h"
 
 
+
 #ifdef EDNA_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

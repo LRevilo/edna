@@ -1,8 +1,11 @@
 #pragma once
 
 #include "EDNA/Window.h"
+#include "EDNA/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
+
 
 namespace EDNA {
 
@@ -28,6 +31,7 @@ namespace EDNA {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

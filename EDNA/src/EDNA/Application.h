@@ -9,6 +9,9 @@
 #include "ImGui/ImGuiLayer.h"
 
 
+//temp
+#include "EDNA/Renderer/Shader.h"
+
 namespace EDNA {
 
 	class EDNA_API Application
@@ -34,6 +37,10 @@ namespace EDNA {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
+
 
 	private:
 		static Application* s_Instance;

@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef EDNA_PLATFORM_WINDOWS
+#if EDNA_DYNAMIC_LINK
 	#ifdef EDNA_BUILD_DLL
 		#define EDNA_API __declspec(dllexport)
 	#else
 		#define EDNA_API __declspec(dllimport)
 	#endif
+#else
+	#define EDNA_API
+#endif
 #else
 	#error Unsupported OS
 #endif

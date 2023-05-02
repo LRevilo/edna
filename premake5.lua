@@ -24,9 +24,11 @@ include "EDNA/vendor/imgui"
 
 project "EDNA"
 	location "EDNA"
-	kind "SharedLib"
+	kind "StaticLib"
+	staticruntime "on"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++20"
+	
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -61,8 +63,8 @@ project "EDNA"
 	}
 
 	filter "system:windows"
-		cppdialect "C++20"
 		systemversion "latest"
+
 		defines
 		{
 				"EDNA_PLATFORM_WINDOWS",
@@ -70,32 +72,29 @@ project "EDNA"
 				"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPYDIR} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/GamePrototype/\"")
-		}
-
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
 			runtime "Debug"
-			symbols "On"
+			symbols "on"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 
 project "GamePrototype"
 	location "GamePrototype"
 	kind "ConsoleApp"
+	staticruntime "on"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++20"
+
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -110,6 +109,7 @@ project "GamePrototype"
 	{
 		"EDNA/vendor/spdlog/include",
 		"EDNA/src",
+		"EDNA/vendor",
 		"%{IncludeDir.glm}"
 	}
 
@@ -119,7 +119,6 @@ project "GamePrototype"
 	}
 
 	filter "system:windows"
-		cppdialect "C++20"
 		systemversion "latest"
 		defines
 		{
@@ -130,15 +129,15 @@ project "GamePrototype"
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
 			runtime "Debug"
-			symbols "On"
+			symbols "on"
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
 			runtime "Release"
-			optimize "On"
+			optimize "on"
 

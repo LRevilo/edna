@@ -13,6 +13,9 @@
     <Filter Include="src\EDNA\ImGui">
       <UniqueIdentifier>{DE5C3C6F-CA2A-3075-B3BE-A09B9F2B0CDA}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EDNA\Renderer">
+      <UniqueIdentifier>{DA7EEC68-4695-EAFE-8F0C-7620FB61BB86}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -90,8 +93,14 @@
     <ClInclude Include="src\EDNA\MouseButtonCodes.h">
       <Filter>src\EDNA</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Window.h">
       <Filter>src\EDNA</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1350,10 +1359,14 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Application.cpp">
       <Filter>src\EDNA</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp">
+      <Filter>src\EDNA\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp">
       <Filter>src\EDNA\ImGui</Filter>
@@ -1367,6 +1380,9 @@
     <ClCompile Include="src\EDNA\Log.cpp">
       <Filter>src\EDNA</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1376,6 +1392,6 @@
     <ClCompile Include="src\ednapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
