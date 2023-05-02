@@ -143,6 +143,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EDNA\Renderer\Renderer.h" />
+    <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
     <ClInclude Include="src\EDNA.h" />
     <ClInclude Include="src\EDNA\Application.h" />
     <ClInclude Include="src\EDNA\Core.h" />
@@ -161,6 +163,7 @@
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\EDNA\Renderer\Shader.h" />
     <ClInclude Include="src\EDNA\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -583,6 +586,8 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EDNA\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
     <ClCompile Include="src\EDNA\Application.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
@@ -591,6 +596,7 @@
     <ClCompile Include="src\EDNA\Log.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ednapch.cpp">
