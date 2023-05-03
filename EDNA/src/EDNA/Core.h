@@ -15,7 +15,7 @@
 #endif
 
 #ifdef EDNA_DEBUG
-	#define HZ_ENABLE_ASSERTS
+	#define EDNA_ENABLE_ASSERTS
 #endif
 
 #ifdef EDNA_ENABLE_ASSERTS

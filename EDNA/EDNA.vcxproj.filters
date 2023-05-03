@@ -1363,6 +1363,8 @@
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\EDNA\Renderer\Renderer.h" />
+    <ClInclude Include="src\EDNA\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Application.cpp">
@@ -1399,5 +1401,7 @@
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>

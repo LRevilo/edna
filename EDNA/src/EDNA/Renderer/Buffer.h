@@ -39,7 +39,7 @@ namespace EDNA {
 		uint32_t Offset;
 
 		bool Normalised;
-		BufferElement() {}
+		//BufferElement() {}
 		BufferElement(ShaderDataType type, const std::string& name, bool normalised = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalised(normalised)
 		{	
