@@ -12,7 +12,7 @@ namespace EDNA {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-		case RendererAPI::OpenGl:	return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::OpenGL:	return new OpenGLVertexBuffer(vertices, size);
 		}
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
@@ -23,7 +23,7 @@ namespace EDNA {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-		case RendererAPI::OpenGl:	return new OpenGLIndexBuffer(indices, size);
+		case RendererAPI::OpenGL:	return new OpenGLIndexBuffer(indices, size);
 		}
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;

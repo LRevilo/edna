@@ -5,7 +5,7 @@ namespace EDNA {
 
 	enum class RendererAPI
 	{
-		None = 0, OpenGl = 1
+		None = 0, OpenGL = 1
 	};
 
 	class Renderer

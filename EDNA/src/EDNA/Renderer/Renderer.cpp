@@ -3,6 +3,6 @@
 
 namespace EDNA {
 
-	RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGl;
+	RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
 
 }
