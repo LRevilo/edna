@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EDNA\Renderer\RenderCommand.h" />
     <ClInclude Include="src\EDNA\Renderer\Renderer.h" />
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
     <ClInclude Include="src\EDNA.h" />
@@ -161,11 +162,13 @@
     <ClInclude Include="src\EDNA\Log.h" />
     <ClInclude Include="src\EDNA\MouseButtonCodes.h" />
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\EDNA\Renderer\RendererAPI.h" />
     <ClInclude Include="src\EDNA\Renderer\Shader.h" />
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h" />
     <ClInclude Include="src\EDNA\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -588,6 +591,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EDNA\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Renderer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
     <ClCompile Include="src\EDNA\Application.cpp" />
@@ -596,10 +600,12 @@
     <ClCompile Include="src\EDNA\Layer.cpp" />
     <ClCompile Include="src\EDNA\LayerStack.cpp" />
     <ClCompile Include="src\EDNA\Log.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Shader.cpp" />
     <ClCompile Include="src\EDNA\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

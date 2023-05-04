@@ -4,8 +4,7 @@
 
 #include "EDNA/Log.h"
 
-#include <glad/glad.h>
-
+#include "EDNA/Renderer/Renderer.h"
 #include "Input.h"
 
 
@@ -137,21 +136,28 @@ void main()
 
 		while (m_Running)
 		{
+			
+			RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
+			RenderCommand::Clear();
 
-			glClearColor(0, 0, 0, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
-
+		
+			Renderer::BeginScene();
 			m_Shader->Bind();
-			m_VertexArray->Bind();
 
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
+		
+			// different_Shader->Bind();
+			// Renderer::Submit( another vertax array);
+
+			Renderer::EndScene();
+
+
+			//Rebderer::Flush();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			
-			//auto [x, y] = Input::GetMousePosition();
-			//EDNA_CORE_TRACE("{0},{1}", x, y);
 
 
 			m_ImGuiLayer->Begin();
