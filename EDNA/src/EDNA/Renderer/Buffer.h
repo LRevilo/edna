@@ -39,7 +39,7 @@ namespace EDNA {
 		uint32_t Offset;
 
 		bool Normalised;
-		//BufferElement() {}
+		BufferElement() {}
 		BufferElement(ShaderDataType type, const std::string& name, bool normalised = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalised(normalised)
 		{	
@@ -113,7 +113,7 @@ namespace EDNA {
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() {}
+		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -129,7 +129,7 @@ namespace EDNA {
 	class IndexBuffer 
 	{
 	public:
-		virtual ~IndexBuffer() {}
+		virtual ~IndexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;

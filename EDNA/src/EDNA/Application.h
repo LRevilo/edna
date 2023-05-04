@@ -14,6 +14,8 @@
 #include "EDNA/Renderer/Buffer.h"
 #include "EDNA/Renderer/VertexArray.h"
 
+#include "Renderer/OrthographicCamera.h"
+
 namespace EDNA {
 
 	class EDNA_API Application
@@ -42,10 +44,9 @@ namespace EDNA {
 
 
 		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 		std::shared_ptr<VertexArray> m_VertexArray;
-
+		OrthographicCamera m_Camera;
+		 
 
 	private:
 		static Application* s_Instance;

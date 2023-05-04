@@ -1368,6 +1368,7 @@
     <ClInclude Include="src\EDNA\Renderer\RendererAPI.h" />
     <ClInclude Include="src\EDNA\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Application.cpp">
@@ -1409,5 +1410,6 @@
     <ClCompile Include="src\EDNA\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\EDNA\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp" />
   </ItemGroup>
 </Project>
