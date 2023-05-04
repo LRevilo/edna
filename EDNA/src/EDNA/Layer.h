@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EDNA/Core.h"
+#include "EDNA/Core/Timestep.h"
 #include "EDNA/Events/Event.h"
 
 namespace EDNA {
@@ -13,7 +14,7 @@ namespace EDNA {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

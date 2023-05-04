@@ -9,12 +9,8 @@
 #include "ImGui/ImGuiLayer.h"
 
 
-//temp
-#include "EDNA/Renderer/Shader.h"
-#include "EDNA/Renderer/Buffer.h"
-#include "EDNA/Renderer/VertexArray.h"
+#include "EDNA/Core/Timestep.h"
 
-#include "Renderer/OrthographicCamera.h"
 
 namespace EDNA {
 
@@ -34,18 +30,18 @@ namespace EDNA {
 	
 		inline Window& GetWindow() {return *m_Window;}
 		inline static Application& Get() { return *s_Instance; }
+
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		OrthographicCamera m_Camera;
+
 		 
 
 	private:
