@@ -7,5 +7,4 @@ namespace EDNA {
 
 	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
 
-
 }

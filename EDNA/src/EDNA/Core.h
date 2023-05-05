@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef EDNA_PLATFORM_WINDOWS
 #if EDNA_DYNAMIC_LINK
 	#ifdef EDNA_BUILD_DLL
@@ -31,3 +33,14 @@
 #define EDNA_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 //#define GLM_FORCE_CTOR_INIT
+
+namespace EDNA {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+
+}

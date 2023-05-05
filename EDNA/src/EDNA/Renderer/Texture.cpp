@@ -1,0 +1,20 @@
+#include "ednapch.h"
+#include "Texture.h"
+
+#include "Renderer.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
+
+namespace EDNA {
+
+	Ref<Texture2D> Texture2D::Create(const std::string& path) 
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return std::make_shared<OpenGLTexture2D>(path);
+		}
+		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+		
+	}
+}

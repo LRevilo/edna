@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "EDNA/vendor/GLFW/include"
 IncludeDir["Glad"] = "EDNA/vendor/Glad/include"
 IncludeDir["ImGui"] = "EDNA/vendor/imgui"
 IncludeDir["glm"] = "EDNA/vendor/glm"
+IncludeDir["stb_image"] = "EDNA/vendor/stb_image"
 
 include "EDNA/vendor/GLFW"
 include "EDNA/vendor/Glad"
@@ -40,6 +41,8 @@ project "EDNA"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -51,7 +54,8 @@ project "EDNA"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

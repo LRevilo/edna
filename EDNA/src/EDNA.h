@@ -28,6 +28,7 @@
 
 #include "EDNA/Renderer/Buffer.h"
 #include "EDNA/Renderer/Shader.h"
+#include "EDNA/Renderer/Texture.h"
 #include "EDNA/Renderer/VertexArray.h"
 
 #include "EDNA/Renderer/OrthographicCamera.h"
