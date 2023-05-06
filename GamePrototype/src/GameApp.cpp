@@ -11,7 +11,7 @@ class ExampleLayer : public EDNA::Layer {
 
 public:
 	ExampleLayer()
-		: Layer("ExampleLayer"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
+		: Layer("ExampleLayer"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		
 		m_VertexArray.reset(EDNA::VertexArray::Create());
@@ -104,32 +104,13 @@ void main()
 
 		//EDNA_TRACE("Delta time: {0}", ts.GetSeconds());
 
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_W))
-			m_ObjPosition.y += m_ObjMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_S))
-			m_ObjPosition.y -= m_ObjMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_A))
-			m_ObjPosition.x -= m_ObjMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_D))
-			m_ObjPosition.x += m_ObjMoveSpeed * ts;
-
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		if (EDNA::Input::IsKeyPressed(EDNA_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
+		m_CameraController.OnUpdate(ts);
 
 		EDNA::RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
 		EDNA::RenderCommand::Clear();
 
-		m_Camera.SetRotation(m_CameraRotation);
-		m_Camera.SetPosition(m_CameraPosition);
 
-		EDNA::Renderer::BeginScene(m_Camera);
+		EDNA::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f));
 
@@ -169,7 +150,7 @@ void main()
 		
 	}
 
-	void OnEvent(EDNA::Event& event) override
+	void OnEvent(EDNA::Event& e) override
 	{
 		/*
 		if (event.GetEventType() == EDNA::EventType::KeyPressed)
@@ -180,6 +161,8 @@ void main()
 			EDNA_TRACE("{0}", (char)e.GetKeyCode());
 		}
 		*/
+
+		m_CameraController.OnEvent(e);
 	}
 
 private:
@@ -194,14 +177,13 @@ private:
 	EDNA::Ref<EDNA::Texture2D> m_ChernoTexture;
 
 
-	EDNA::OrthographicCamera m_Camera;
+	EDNA::OrthographicCameraController m_CameraController;
+
+
 	float m_ObjMoveSpeed = 5.0f;
 	glm::vec3 m_ObjPosition = glm::vec3(0.0f);
 
-	glm::vec3 m_CameraPosition = glm::vec3(0.0f);
-	float m_CameraMoveSpeed = 5.0f;
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+
 	glm::vec3 m_Colour = glm::vec3(0.8f, 0.3f, 0.2f);
 
 };

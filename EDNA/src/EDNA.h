@@ -18,6 +18,8 @@
 #include "EDNA/MouseButtonCodes.h"
 // ------------------------
 
+#include "EDNA/OrthographicCameraController.h"
+
 
 
 #include "EDNA/ImGui/ImGuiLayer.h"

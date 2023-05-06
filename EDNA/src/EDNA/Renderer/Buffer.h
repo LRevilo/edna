@@ -39,7 +39,8 @@ namespace EDNA {
 		uint32_t Offset;
 
 		bool Normalised;
-		BufferElement() {}
+
+		BufferElement() = default;
 		BufferElement(ShaderDataType type, const std::string& name, bool normalised = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalised(normalised)
 		{	
@@ -76,7 +77,7 @@ namespace EDNA {
 	class BufferLayout
 	{
 	public:
-		BufferLayout() {}
+		BufferLayout() = default;
 		BufferLayout(const std::initializer_list<BufferElement>& elements)
 			: m_Elements(elements) 
 		{

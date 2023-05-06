@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EDNA\OrthographicCameraController.h" />
     <ClInclude Include="src\EDNA.h" />
     <ClInclude Include="src\EDNA\Application.h" />
     <ClInclude Include="src\EDNA\Core.h" />
@@ -597,6 +598,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EDNA\OrthographicCameraController.cpp" />
     <ClCompile Include="src\EDNA\Application.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
