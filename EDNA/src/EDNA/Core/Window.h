@@ -2,7 +2,7 @@
 
 #include "ednapch.h"
 
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
 #include "EDNA/Events/Event.h"
 
 namespace EDNA {

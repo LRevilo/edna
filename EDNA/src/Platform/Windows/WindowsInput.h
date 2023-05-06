@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EDNA/Input.h"
+#include "EDNA/Core/Input.h"
 #include <GLFW/glfw3.h>
 
 

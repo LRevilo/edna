@@ -8,7 +8,7 @@
 #include "backends/imgui_impl_opengl3.h"
 
 
-#include "EDNA/Application.h"
+#include "EDNA/Core/Application.h"
 // TEMPORARY
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

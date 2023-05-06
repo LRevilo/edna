@@ -2,10 +2,10 @@
 #include "Application.h"
 
 
-#include "EDNA/Log.h"
+#include "EDNA/Core/Log.h"
 
 #include "EDNA/Renderer/Renderer.h"
-#include "Input.h"
+#include "EDNA/Core/Input.h"
 
 
 #include <GLFW/glfw3.h>

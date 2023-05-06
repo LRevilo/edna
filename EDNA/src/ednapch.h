@@ -15,7 +15,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "EDNA/Log.h"
+#include "EDNA/Core/Log.h"
 
 
 

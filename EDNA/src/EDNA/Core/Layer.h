@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
 #include "EDNA/Core/Timestep.h"
 #include "EDNA/Events/Event.h"
 

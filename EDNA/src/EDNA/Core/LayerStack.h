@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>

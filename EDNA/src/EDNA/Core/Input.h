@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
+
 namespace EDNA {
 
 	class EDNA_API Input

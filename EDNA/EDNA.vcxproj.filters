@@ -57,17 +57,38 @@
     <ClInclude Include="src\EDNA.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\Application.h">
-      <Filter>src\EDNA</Filter>
+    <ClInclude Include="src\EDNA\Core\Application.h">
+      <Filter>src\EDNA\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\Core.h">
-      <Filter>src\EDNA</Filter>
+    <ClInclude Include="src\EDNA\Core\Core.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\EntryPoint.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\Input.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\KeyCodes.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\Layer.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\LayerStack.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\Log.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Core\MouseButtonCodes.h">
+      <Filter>src\EDNA\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Core\Timestep.h">
       <Filter>src\EDNA\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\EntryPoint.h">
-      <Filter>src\EDNA</Filter>
+    <ClInclude Include="src\EDNA\Core\Window.h">
+      <Filter>src\EDNA\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Events\ApplicationEvent.h">
       <Filter>src\EDNA\Events</Filter>
@@ -84,24 +105,6 @@
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h">
       <Filter>src\EDNA\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\Input.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\KeyCodes.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\Layer.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\LayerStack.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\Log.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\MouseButtonCodes.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\Buffer.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
@@ -109,6 +112,9 @@
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\OrthographicCameraController.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\RenderCommand.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h">
       <Filter>src\EDNA\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EDNA\Window.h">
-      <Filter>src\EDNA</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1410,13 +1413,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\OrthographicCameraController.h">
-      <Filter>src\EDNA</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EDNA\Application.cpp">
-      <Filter>src\EDNA</Filter>
+    <ClCompile Include="src\EDNA\Core\Application.cpp">
+      <Filter>src\EDNA\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Core\Layer.cpp">
+      <Filter>src\EDNA\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Core\LayerStack.cpp">
+      <Filter>src\EDNA\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Core\Log.cpp">
+      <Filter>src\EDNA\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp">
       <Filter>src\EDNA\ImGui</Filter>
@@ -1424,19 +1433,13 @@
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp">
       <Filter>src\EDNA\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\EDNA\Layer.cpp">
-      <Filter>src\EDNA</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EDNA\LayerStack.cpp">
-      <Filter>src\EDNA</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EDNA\Log.cpp">
-      <Filter>src\EDNA</Filter>
-    </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\OrthographicCameraController.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\RenderCommand.cpp">
@@ -1486,9 +1489,6 @@
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EDNA\OrthographicCameraController.cpp">
-      <Filter>src\EDNA</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

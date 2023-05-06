@@ -143,33 +143,33 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\EDNA\OrthographicCameraController.h" />
     <ClInclude Include="src\EDNA.h" />
-    <ClInclude Include="src\EDNA\Application.h" />
-    <ClInclude Include="src\EDNA\Core.h" />
+    <ClInclude Include="src\EDNA\Core\Application.h" />
+    <ClInclude Include="src\EDNA\Core\Core.h" />
+    <ClInclude Include="src\EDNA\Core\EntryPoint.h" />
+    <ClInclude Include="src\EDNA\Core\Input.h" />
+    <ClInclude Include="src\EDNA\Core\KeyCodes.h" />
+    <ClInclude Include="src\EDNA\Core\Layer.h" />
+    <ClInclude Include="src\EDNA\Core\LayerStack.h" />
+    <ClInclude Include="src\EDNA\Core\Log.h" />
+    <ClInclude Include="src\EDNA\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\EDNA\Core\Timestep.h" />
-    <ClInclude Include="src\EDNA\EntryPoint.h" />
+    <ClInclude Include="src\EDNA\Core\Window.h" />
     <ClInclude Include="src\EDNA\Events\ApplicationEvent.h" />
     <ClInclude Include="src\EDNA\Events\Event.h" />
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\EDNA\Input.h" />
-    <ClInclude Include="src\EDNA\KeyCodes.h" />
-    <ClInclude Include="src\EDNA\Layer.h" />
-    <ClInclude Include="src\EDNA\LayerStack.h" />
-    <ClInclude Include="src\EDNA\Log.h" />
-    <ClInclude Include="src\EDNA\MouseButtonCodes.h" />
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\EDNA\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\EDNA\Renderer\RenderCommand.h" />
     <ClInclude Include="src\EDNA\Renderer\Renderer.h" />
     <ClInclude Include="src\EDNA\Renderer\RendererAPI.h" />
     <ClInclude Include="src\EDNA\Renderer\Shader.h" />
     <ClInclude Include="src\EDNA\Renderer\Texture.h" />
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h" />
-    <ClInclude Include="src\EDNA\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -598,15 +598,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EDNA\OrthographicCameraController.cpp" />
-    <ClCompile Include="src\EDNA\Application.cpp" />
+    <ClCompile Include="src\EDNA\Core\Application.cpp" />
+    <ClCompile Include="src\EDNA\Core\Layer.cpp" />
+    <ClCompile Include="src\EDNA\Core\LayerStack.cpp" />
+    <ClCompile Include="src\EDNA\Core\Log.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\EDNA\Layer.cpp" />
-    <ClCompile Include="src\EDNA\LayerStack.cpp" />
-    <ClCompile Include="src\EDNA\Log.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\EDNA\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Renderer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\RendererAPI.cpp" />

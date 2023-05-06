@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
 
 namespace EDNA {
 

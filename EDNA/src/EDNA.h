@@ -5,20 +5,20 @@
 //#include <stdio.h>
 
 
-#include "EDNA/Application.h"
-#include "EDNA/Layer.h"
-#include "EDNA/Log.h"	
+#include "EDNA/Core/Application.h"
+#include "EDNA/Core/Layer.h"
+#include "EDNA/Core/Log.h"	
 
 #include "EDNA/Core/Timestep.h"
 
 
 // Input -------------------
-#include "EDNA/Input.h"
-#include "EDNA/KeyCodes.h"
-#include "EDNA/MouseButtonCodes.h"
+#include "EDNA/Core/Input.h"
+#include "EDNA/Core/KeyCodes.h"
+#include "EDNA/Core/MouseButtonCodes.h"
 // ------------------------
 
-#include "EDNA/OrthographicCameraController.h"
+#include "EDNA/Renderer/OrthographicCameraController.h"
 
 
 
@@ -38,5 +38,5 @@
 
 
 // EntryPoint -------------
-#include "EDNA/EntryPoint.h"
+#include "EDNA/Core/EntryPoint.h"
 // ------------------------

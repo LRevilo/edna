@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "EDNA/Application.h"
+#include "EDNA/Core/Application.h"
 
 namespace EDNA {
 

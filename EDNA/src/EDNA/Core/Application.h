@@ -3,10 +3,10 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "EDNA/LayerStack.h"
-#include "Events/Event.h"
+#include "EDNA/Core/LayerStack.h"
+#include "EDNA/Events/Event.h"
 #include "EDNA/Events/ApplicationEvent.h"
-#include "ImGui/ImGuiLayer.h"
+#include "EDNA/ImGui/ImGuiLayer.h"
 
 
 #include "EDNA/Core/Timestep.h"

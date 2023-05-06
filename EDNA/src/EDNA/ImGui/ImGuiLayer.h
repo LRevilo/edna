@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EDNA/Layer.h"
+#include "EDNA/Core/Layer.h"
 
 #include "EDNA/Events/ApplicationEvent.h"
 #include "EDNA/Events/MouseEvent.h"

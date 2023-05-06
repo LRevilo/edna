@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EDNA/Window.h"
+#include "EDNA/Core/Window.h"
 #include "EDNA/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

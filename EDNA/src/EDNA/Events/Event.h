@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ednapch.h"
-#include "EDNA/Core.h"
+#include "EDNA/Core/Core.h"
 
 
 

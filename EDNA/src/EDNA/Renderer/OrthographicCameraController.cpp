@@ -1,8 +1,8 @@
 #include "ednapch.h"
 
 #include "OrthographicCameraController.h"
-#include "EDNA/Input.h"
-#include "EDNA/KeyCodes.h"
+#include "EDNA/Core/Input.h"
+#include "EDNA/Core/KeyCodes.h"
 
 namespace EDNA {
 
