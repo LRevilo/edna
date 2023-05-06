@@ -26,7 +26,7 @@ public:
 
 
 		EDNA::Ref<EDNA::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(EDNA::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = EDNA::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		EDNA::BufferLayout layout = {
 			{ EDNA::ShaderDataType::Float3, "a_Position"},
@@ -39,7 +39,7 @@ public:
 		uint32_t indices[6] = { 0,1,2,2,3,0 };
 
 		EDNA::Ref<EDNA::IndexBuffer> indexBuffer;
-		indexBuffer.reset(EDNA::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = EDNA::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -81,55 +81,17 @@ void main()
 )";
 
 
-		m_Shader.reset(EDNA::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = EDNA::Shader::Create("ColourShader", vertexSrc, fragmentSrc);
 
 
-		std::string texVertexSrc =
-			R"(
-
-#version 330 core
-
-layout(location = 0) in vec3 a_Position;
-layout(location = 1) in vec2 a_TexCoord;
-
-uniform mat4 u_ViewProjection;
-uniform mat4 u_Transform;
-
-out vec2 v_TexCoord;
-
-void main()
-{
-	v_TexCoord = a_TexCoord;
-	gl_Position = u_ViewProjection * u_Transform * vec4(a_Position,1.0);
-}
-)";
-
-		std::string texFragmentSrc =
-			R"(
-
-#version 330 core
-
-layout(location = 0) out vec4 color;
-
-in vec2 v_TexCoord;
-
-uniform vec3 u_Colour;
-uniform sampler2D u_Texture;
-
-void main()
-{
-	color = texture(u_Texture,v_TexCoord);
-}
-)";
-
-		m_TextureShader.reset(EDNA::Shader::Create(texVertexSrc, texFragmentSrc));
+		auto textureShader = m_ShaderLibrary.Load("Assets/Shaders/Texture.glsl");
 
 
 		m_Texture = EDNA::Texture2D::Create("Assets/Textures/Checkerboard.png");
 		m_ChernoTexture = EDNA::Texture2D::Create("Assets/Textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<EDNA::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<EDNA::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 
@@ -175,6 +137,8 @@ void main()
 		std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Colour", m_Colour);
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		for (int y = 0; y < 4; y++) {
 			for (int x = 0; x < 4; x++) {
 
@@ -182,9 +146,9 @@ void main()
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_ObjPosition + offset)*scale;
 
 				m_Texture->Bind();
-				EDNA::Renderer::Submit(m_TextureShader, m_VertexArray, transform);
+				EDNA::Renderer::Submit(textureShader, m_VertexArray, transform);
 				m_ChernoTexture->Bind();
-				EDNA::Renderer::Submit(m_TextureShader, m_VertexArray, transform);
+				EDNA::Renderer::Submit(textureShader, m_VertexArray, transform);
 
 			}
 		}
@@ -219,10 +183,12 @@ void main()
 	}
 
 private:
+
+	EDNA::ShaderLibrary m_ShaderLibrary;
 	EDNA::Ref<EDNA::Shader> m_Shader;
 	EDNA::Ref<EDNA::VertexArray> m_VertexArray;
 
-	EDNA::Ref<EDNA::Shader> m_TextureShader;
+	//EDNA::Ref<EDNA::Shader> m_TextureShader;
 
 	EDNA::Ref<EDNA::Texture2D> m_Texture;
 	EDNA::Ref<EDNA::Texture2D> m_ChernoTexture;
