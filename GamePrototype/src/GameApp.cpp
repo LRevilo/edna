@@ -1,4 +1,7 @@
 #include <EDNA.h>
+// EntryPoint -------------
+#include "EDNA/Core/EntryPoint.h"
+// ------------------------
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -7,6 +10,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "GameApp2D.h"
+
 class ExampleLayer : public EDNA::Layer {
 
 public:
@@ -14,7 +19,7 @@ public:
 		: Layer("ExampleLayer"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		
-		m_VertexArray.reset(EDNA::VertexArray::Create());
+		m_VertexArray = EDNA::VertexArray::Create();
 
 		float vertices[4 * 5] = {
 
@@ -194,7 +199,7 @@ class GamePrototype : public EDNA::Application
 public:
 	GamePrototype() 
 	{
-		PushLayer(new ExampleLayer());
+		PushLayer(new GameApp2D());
 
 	}
 	~GamePrototype() 

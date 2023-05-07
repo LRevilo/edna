@@ -11,7 +11,7 @@ namespace EDNA {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return std::make_shared<OpenGLTexture2D>(path);
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(path);
 		}
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;

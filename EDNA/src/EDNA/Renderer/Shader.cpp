@@ -10,7 +10,7 @@ namespace EDNA {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return std::make_shared<OpenGLShader>(filePath);
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLShader>(filePath);
 		}
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
@@ -23,7 +23,7 @@ namespace EDNA {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;

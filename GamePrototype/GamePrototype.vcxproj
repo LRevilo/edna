@@ -135,11 +135,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GameApp.cpp" />
+    <ClCompile Include="src\GameApp2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EDNA\EDNA.vcxproj">
       <Project>{3D11847C-2948-850D-D234-6B10BE4A010F}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameApp2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
