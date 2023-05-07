@@ -19,7 +19,7 @@ public:
 private:
 	EDNA::OrthographicCameraController m_CameraController;
 
-
+	EDNA::Ref<EDNA::Texture2D> m_CheckerBoardTexture;
 
 	EDNA::Ref<EDNA::VertexArray> m_SquareVA;
 	EDNA::Ref<EDNA::Shader> m_FlatColorShader;

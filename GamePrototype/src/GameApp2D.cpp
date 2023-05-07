@@ -16,7 +16,7 @@ GameApp2D::GameApp2D()
 void GameApp2D::OnAttach()
 {
 	
-
+	m_CheckerBoardTexture = EDNA::Texture2D::Create("Assets/Textures/Checkerboard.png");
 
 
 
@@ -38,9 +38,10 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 
 	EDNA::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
+	EDNA::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	EDNA::Renderer2D::DrawQuad({ 0.5f, -0.5f }, {0.5f, 0.5f }, { 0.3f, 0.2f, 0.8f, 1.0f });
+	EDNA::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerBoardTexture);
 
-
-	EDNA::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
 	EDNA::Renderer2D::EndScene();
 
 	//EDNA::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f),glm::vec3(1.5f)));
