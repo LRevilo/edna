@@ -16,34 +16,7 @@ GameApp2D::GameApp2D()
 void GameApp2D::OnAttach()
 {
 	
-	m_SquareVA= EDNA::VertexArray::Create();
 
-	float squareVertices[4 * 3] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-
-	EDNA::Ref<EDNA::VertexBuffer> squareVB;
-	squareVB = EDNA::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
-
-	EDNA::BufferLayout layout = {
-		{ EDNA::ShaderDataType::Float3, "a_Position"},
-	};
-
-	squareVB->SetLayout(layout);
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0,1,2,2,3,0 };
-
-	EDNA::Ref<EDNA::IndexBuffer> squareIB;
-	squareIB = EDNA::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
-
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = EDNA::Shader::Create("Assets/Shaders/FlatColor.glsl");
 
 
 
@@ -63,17 +36,16 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 	EDNA::RenderCommand::Clear();
 
 
-	EDNA::Renderer::BeginScene(m_CameraController.GetCamera());
+	EDNA::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
 
-	std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 
+	EDNA::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	EDNA::Renderer2D::EndScene();
 
-	EDNA::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f),glm::vec3(1.5f)));
-
-	EDNA::Renderer::EndScene();
-
+	//EDNA::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f),glm::vec3(1.5f)));
+	//std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_FlatColorShader)->Bind();
+	//std::dynamic_pointer_cast<EDNA::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void GameApp2D::OnImGuiRender()

@@ -1,6 +1,6 @@
 #include "ednapch.h"
 #include "Renderer.h"
-
+#include "Renderer2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace EDNA {
@@ -10,6 +10,7 @@ namespace EDNA {
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

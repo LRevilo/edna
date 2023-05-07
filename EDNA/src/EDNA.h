@@ -26,6 +26,7 @@
 
 // Renderer -------------
 #include "EDNA/Renderer/Renderer.h"
+#include "EDNA/Renderer/Renderer2D.h"
 #include "EDNA/Renderer/RenderCommand.h"
 
 #include "EDNA/Renderer/Buffer.h"
