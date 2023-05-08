@@ -9,7 +9,7 @@
 
 namespace EDNA {
 
-	class EDNA_API Log
+	class Log
 	{
 	public:
 		static void Init();

@@ -7,7 +7,7 @@
 
 namespace EDNA {
 
-	class EDNA_API LayerStack
+	class LayerStack
 	{
 	public:	
 		LayerStack();

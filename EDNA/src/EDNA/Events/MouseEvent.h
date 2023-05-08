@@ -6,7 +6,7 @@
 
 namespace EDNA {
 
-	class EDNA_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)

@@ -14,7 +14,7 @@
 
 namespace EDNA {
 
-	class EDNA_API Application
+	class Application
 	{
 	public:
 		Application();

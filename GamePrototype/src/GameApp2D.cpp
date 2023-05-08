@@ -38,7 +38,7 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 {
 	EDNA_PROFILE_FUNCTION();
 	//update
-	m_Framebuffer->Bind();
+	//m_Framebuffer->Bind();
 	m_CameraController.OnUpdate(ts);
 
 	EDNA::Renderer2D::ResetStats();
@@ -63,7 +63,7 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 	}
 
 
-	m_Framebuffer->Unbind();
+	//m_Framebuffer->Unbind();
 
 
 	//EDNA::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f),glm::vec3(1.5f)));
