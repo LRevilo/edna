@@ -31,6 +31,7 @@
 
 #include "EDNA/Renderer/Buffer.h"
 #include "EDNA/Renderer/Shader.h"
+#include "EDNA/Renderer/Framebuffer.h"
 #include "EDNA/Renderer/Texture.h"
 #include "EDNA/Renderer/VertexArray.h"
 

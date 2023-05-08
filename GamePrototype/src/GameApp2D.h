@@ -20,9 +20,13 @@ private:
 	EDNA::OrthographicCameraController m_CameraController;
 
 	EDNA::Ref<EDNA::Texture2D> m_CheckerBoardTexture;
+	EDNA::Ref<EDNA::Texture2D> m_OverworldTilesTexture;
+	EDNA::Ref<EDNA::SubTexture2D> m_ShrubTile;
 
 	EDNA::Ref<EDNA::VertexArray> m_SquareVA;
 	EDNA::Ref<EDNA::Shader> m_FlatColorShader;
+
+	EDNA::Ref<EDNA::Framebuffer> m_Framebuffer;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 

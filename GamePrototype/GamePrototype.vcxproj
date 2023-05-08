@@ -145,6 +145,9 @@
   <ItemGroup>
     <ClInclude Include="src\GameApp2D.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Users\leola\Downloads\overworld.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

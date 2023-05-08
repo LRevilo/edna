@@ -20,9 +20,13 @@ void GameApp2D::OnAttach()
 {
 	EDNA_PROFILE_FUNCTION();
 	m_CheckerBoardTexture = EDNA::Texture2D::Create("Assets/Textures/Checkerboard.png");
+	m_OverworldTilesTexture = EDNA::Texture2D::Create("Assets/Textures/OverworldTiles.png");
+	m_ShrubTile = EDNA::SubTexture2D::CreateFromCoords(m_OverworldTilesTexture, { 7,4 }, { 16,16 }, { 1,1 });
 
-
-
+	EDNA::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = EDNA::Framebuffer::Create(fbSpec);
 
 }
 
@@ -34,7 +38,7 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 {
 	EDNA_PROFILE_FUNCTION();
 	//update
-
+	m_Framebuffer->Bind();
 	m_CameraController.OnUpdate(ts);
 
 	EDNA::Renderer2D::ResetStats();
@@ -49,13 +53,17 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 		EDNA::Renderer2D::BeginScene(m_CameraController.GetCamera());
 		//EDNA::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f },3.141592f/6.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
 		EDNA::Renderer2D::DrawQuad({ 0.5f, 0.0f, 0.0f }, { 0.5f, 0.5f }, { 0.8f, 0.3f, 0.2f, 1.0f });
+
 		EDNA::Renderer2D::DrawQuad({ -1.0f, -0.5f, 0.0f }, { 0.5f, 0.5f }, { 0.3f, 0.2f, 0.8f, 1.0f });
-		EDNA::Renderer2D::DrawQuad({ -0.0f, -0.0f, -0.3f }, { 10.0f, 10.0f }, m_CheckerBoardTexture, 5.0f);
-		EDNA::Renderer2D::DrawRotatedQuad({ -0.0f, -0.0f, -0.1f }, { 2.0f, 2.0f },3.141592f/4.0f, m_CheckerBoardTexture, 10.0f);
+		EDNA::Renderer2D::DrawQuad({ -0.0f, -0.0f, -0.9f }, { 10.0f, 10.0f }, m_CheckerBoardTexture, 5.0f);
+		EDNA::Renderer2D::DrawRotatedQuad({ -0.0f, 0.0f, -0.1f }, { 2.0f, 2.0f },3.141592f/4.0f, m_CheckerBoardTexture, 10.0f, glm::vec4(1.0f,1.0f,0.5f,1.0f));
+		EDNA::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.5f }, { 0.5f, 0.5f }, m_ShrubTile, 1.0f);
 		EDNA::Renderer2D::EndScene();
+
 	}
 
 
+	m_Framebuffer->Unbind();
 
 
 	//EDNA::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f),glm::vec3(1.5f)));
@@ -69,6 +77,9 @@ void GameApp2D::OnImGuiRender()
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("SquareColor", glm::value_ptr(m_SquareColor));
 	
+
+	//uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	//ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 
 
 	auto stats = EDNA::Renderer2D::GetStats();
