@@ -20,6 +20,8 @@ namespace EDNA {
 
 	Application::Application()
 	{
+		EDNA_PROFILE_FUNCTION();
+
 		EDNA_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -72,10 +74,12 @@ namespace EDNA {
 
 	void Application::Run()
 	{
+		
 
 		while (m_Running)
 		{
-			
+			EDNA_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;

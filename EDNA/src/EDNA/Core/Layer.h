@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #include "EDNA/Core/Core.h"
 #include "EDNA/Core/Timestep.h"

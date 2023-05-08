@@ -37,6 +37,8 @@ namespace EDNA {
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		EDNA_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -156,12 +158,15 @@ namespace EDNA {
 
 	void WindowsWindow::OnUpdate()
 	{
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		EDNA_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

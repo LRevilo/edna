@@ -16,7 +16,7 @@
 #include <unordered_set>
 
 #include "EDNA/Core/Log.h"
-
+#include "EDNA/Debug/Instrumentor.h"
 
 
 #ifdef EDNA_PLATFORM_WINDOWS

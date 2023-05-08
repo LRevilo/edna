@@ -9,6 +9,7 @@ namespace EDNA {
 
 	void Renderer::Init()
 	{
+		EDNA_PROFILE_FUNCTION();
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

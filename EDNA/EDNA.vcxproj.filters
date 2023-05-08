@@ -1414,6 +1414,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\EDNA\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Core\Application.cpp">

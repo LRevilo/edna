@@ -155,6 +155,7 @@
     <ClInclude Include="src\EDNA\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\EDNA\Core\Timestep.h" />
     <ClInclude Include="src\EDNA\Core\Window.h" />
+    <ClInclude Include="src\EDNA\Debug\Instrumentor.h" />
     <ClInclude Include="src\EDNA\Events\ApplicationEvent.h" />
     <ClInclude Include="src\EDNA\Events\Event.h" />
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />

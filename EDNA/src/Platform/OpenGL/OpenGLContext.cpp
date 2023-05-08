@@ -11,6 +11,8 @@ namespace EDNA {
 	}
 	void OpenGLContext::Init()
 	{
+		EDNA_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		EDNA_CORE_ASSERT(status, "Could not initialise Glad!");
@@ -24,6 +26,7 @@ namespace EDNA {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		EDNA_PROFILE_FUNCTION();
 		glfwSwapBuffers(m_WindowHandle);
 	}
 
