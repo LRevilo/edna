@@ -37,7 +37,7 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 
 	m_CameraController.OnUpdate(ts);
 
-
+	EDNA::Renderer2D::ResetStats();
 
 		EDNA::RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
 		EDNA::RenderCommand::Clear();
@@ -69,6 +69,14 @@ void GameApp2D::OnImGuiRender()
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("SquareColor", glm::value_ptr(m_SquareColor));
 	
+
+
+	auto stats = EDNA::Renderer2D::GetStats();
+	ImGui::SeparatorText("Renderer2D Stats");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indicies: %d", stats.GetTotalIndexCount());
 
 	//for (auto& result : m_ProfileResults)
 	//{
