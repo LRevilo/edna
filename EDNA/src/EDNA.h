@@ -20,6 +20,11 @@
 
 #include "EDNA/Renderer/OrthographicCameraController.h"
 
+#include "EDNA/Scene/Scene.h"
+#include "EDNA/Scene/Entity.h"
+#include "EDNA/Scene/ScriptableEntity.h"
+#include "EDNA/Scene/Components.h"
+
 
 
 #include "EDNA/ImGui/ImGuiLayer.h"

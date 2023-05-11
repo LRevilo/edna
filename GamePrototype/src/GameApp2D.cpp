@@ -43,8 +43,8 @@ void GameApp2D::OnUpdate(EDNA::Timestep ts)
 
 	EDNA::Renderer2D::ResetStats();
 
-		EDNA::RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
-		EDNA::RenderCommand::Clear();
+	EDNA::RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
+	EDNA::RenderCommand::Clear();
 
 
 	{

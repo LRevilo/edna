@@ -59,6 +59,11 @@ namespace EDNA {
 	}
 	void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
 	{
+		if (width < 1 || height < 1)
+		{
+			EDNA_CORE_WARN("Framebuffer attempted to resize to {0},{1}", width, height);
+			return;
+		}
 		m_Specification.Width = width;
 		m_Specification.Height = height;
 		Invalidate();

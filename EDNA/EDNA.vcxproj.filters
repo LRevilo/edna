@@ -10,6 +10,9 @@
     <Filter Include="src\EDNA\Core">
       <UniqueIdentifier>{8CE53468-F8A5-B09E-C1E0-F91B2D60F57A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EDNA\Debug">
+      <UniqueIdentifier>{2AF2DD6E-16C0-D174-FF53-429BEBC0ADD9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\EDNA\Events">
       <UniqueIdentifier>{188A264E-8415-9412-8D26-1707F930F012}</UniqueIdentifier>
     </Filter>
@@ -90,6 +93,9 @@
     <ClInclude Include="src\EDNA\Core\Window.h">
       <Filter>src\EDNA\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Debug\Instrumentor.h">
+      <Filter>src\EDNA\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Events\ApplicationEvent.h">
       <Filter>src\EDNA\Events</Filter>
     </ClInclude>
@@ -108,6 +114,9 @@
     <ClInclude Include="src\EDNA\Renderer\Buffer.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Framebuffer.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
@@ -123,10 +132,16 @@
     <ClInclude Include="src\EDNA\Renderer\Renderer.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Renderer2D.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\RendererAPI.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\Shader.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\SubTexture2D.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\Texture.h">
@@ -139,6 +154,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1410,11 +1428,11 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\EDNA\Debug\Instrumentor.h" />
-    <ClInclude Include="src\EDNA\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\EDNA\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
+    <ClInclude Include="src\EDNA\Scene\Scene.h" />
+    <ClInclude Include="src\EDNA\Renderer\Camera.h" />
+    <ClInclude Include="src\EDNA\Scene\Components.h" />
+    <ClInclude Include="src\EDNA\Scene\Entity.h" />
+    <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Core\Application.cpp">
@@ -1438,6 +1456,9 @@
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\Framebuffer.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
@@ -1450,10 +1471,16 @@
     <ClCompile Include="src\EDNA\Renderer\Renderer.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\Renderer2D.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\RendererAPI.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\Shader.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\SubTexture2D.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\Texture.cpp">
@@ -1466,6 +1493,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1492,9 +1522,8 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\EDNA\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\SubTexture2D.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\EDNA\Scene\Scene.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Camera.cpp" />
+    <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

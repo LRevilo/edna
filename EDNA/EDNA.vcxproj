@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -98,7 +98,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -123,7 +123,7 @@
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EDNA\Scene\Entity.h" />
     <ClInclude Include="src\EDNA.h" />
     <ClInclude Include="src\EDNA\Core\Application.h" />
     <ClInclude Include="src\EDNA\Core\Core.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
+    <ClInclude Include="src\EDNA\Renderer\Camera.h" />
     <ClInclude Include="src\EDNA\Renderer\Framebuffer.h" />
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h" />
@@ -174,9 +176,12 @@
     <ClInclude Include="src\EDNA\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\EDNA\Renderer\Texture.h" />
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
+    <ClInclude Include="src\EDNA\Scene\Components.h" />
+    <ClInclude Include="src\EDNA\Scene\Scene.h" />
+    <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -602,6 +607,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
     <ClCompile Include="src\EDNA\Core\Application.cpp" />
     <ClCompile Include="src\EDNA\Core\Layer.cpp" />
     <ClCompile Include="src\EDNA\Core\LayerStack.cpp" />
@@ -609,6 +615,7 @@
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Camera.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\EDNA\Renderer\OrthographicCameraController.cpp" />
@@ -620,9 +627,10 @@
     <ClCompile Include="src\EDNA\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Texture.cpp" />
     <ClCompile Include="src\EDNA\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\EDNA\Scene\Scene.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

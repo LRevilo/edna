@@ -18,6 +18,7 @@ IncludeDir["Glad"] = "EDNA/vendor/Glad/include"
 IncludeDir["ImGui"] = "EDNA/vendor/imgui"
 IncludeDir["glm"] = "EDNA/vendor/glm"
 IncludeDir["stb_image"] = "EDNA/vendor/stb_image"
+IncludeDir["entt"] = "EDNA/vendor/entt/include"
 
 include "EDNA/vendor/GLFW"
 include "EDNA/vendor/Glad"
@@ -55,7 +56,8 @@ project "EDNA"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -114,7 +116,8 @@ project "GamePrototype"
 		"EDNA/vendor/spdlog/include",
 		"EDNA/src",
 		"EDNA/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links 
