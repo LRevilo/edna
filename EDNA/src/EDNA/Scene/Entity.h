@@ -30,7 +30,7 @@ namespace EDNA {
 		{
 			return m_Scene->m_Registry.all_of<T>(m_EntityHandle);
 		}
-
+		 
 		template<typename T>
 		void RemoveComponent()
 		{

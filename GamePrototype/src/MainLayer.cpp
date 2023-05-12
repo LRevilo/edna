@@ -25,6 +25,7 @@ namespace EDNA {
 		m_ShrubTile = SubTexture2D::CreateFromCoords(m_OverworldTilesTexture, { 7,4 }, { 16,16 }, { 1,1 });
 
 		FramebufferSpecification fbSpec;
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
@@ -127,8 +128,8 @@ namespace EDNA {
 		ImGui::ColorEdit4("SquareColor", glm::value_ptr(squareColor));
 
 
-		//uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-		//ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(1);
+		ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 
 
 		auto stats = Renderer2D::GetStats();
