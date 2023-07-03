@@ -1433,6 +1433,9 @@
     <ClInclude Include="src\EDNA\Scene\Components.h" />
     <ClInclude Include="src\EDNA\Scene\Entity.h" />
     <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\EDNA\Core\UUID.h" />
+    <ClInclude Include="src\EDNA\Renderer\Mesh.h" />
+    <ClInclude Include="src\EDNA\Renderer\Material.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Core\Application.cpp">
@@ -1525,5 +1528,8 @@
     <ClCompile Include="src\EDNA\Scene\Scene.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Camera.cpp" />
     <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
+    <ClCompile Include="src\EDNA\Core\UUID.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Mesh.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Material.cpp" />
   </ItemGroup>
 </Project>

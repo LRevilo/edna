@@ -2,6 +2,7 @@
 #include "Scene.h"
  
 #include "Components.h"
+#include "ScriptableEntity.h"
 #include "EDNA/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
@@ -23,7 +24,13 @@ namespace EDNA {
 
 	Entity Scene::CreateEntity(const std::string& name)
 	{
+		return CreateEntityWithUUID(UUID(), name);
+	}
+
+	Entity Scene::CreateEntityWithUUID(UUID uuid, const std::string& name)
+	{
 		Entity entity = { m_Registry.create(), this };
+		entity.AddComponent<IDComponent>(uuid);
 		auto& tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
 		return entity;

@@ -1,47 +1,64 @@
 #pragma once
-
+#include <unordered_set>
 namespace EDNA {
 
-	enum class ShaderDataType
+	enum class DataType
 	{
-		None = 0, Float, Float2, Float3, Float4, Mat2, Mat3, Mat4, Int, Int2, Int3, Int4, Bool
+		None = 0, Bool, Float, Float2, Float3, Float4, Mat2, Mat3, Mat4, Int, Int2, Int3, Int4
 	};
 
-	static uint32_t ShaderDataTypeSize(ShaderDataType type) 
+	enum class PackingType
+	{
+		None = 0, std140, std430, shared, packed
+	};
+
+	static uint32_t ShaderDataTypeSize(DataType type) 
 	{
 		switch (type)
 		{
-			case ShaderDataType::Float:			return 4;
-			case ShaderDataType::Float2:		return 4*2;
-			case ShaderDataType::Float3:		return 4*3;
-			case ShaderDataType::Float4:		return 4*4;
+			case DataType::Float:			return 4;
+			case DataType::Float2:		return 4*2;
+			case DataType::Float3:		return 4*3;
+			case DataType::Float4:		return 4*4;
 
-			case ShaderDataType::Mat2:			return 4*2*2;
-			case ShaderDataType::Mat3:			return 4*3*3;
-			case ShaderDataType::Mat4:			return 4*4*4;
+			case DataType::Mat2:			return 4*2*2;
+			case DataType::Mat3:			return 4*3*3;
+			case DataType::Mat4:			return 4*4*4;
 
-			case ShaderDataType::Int:			return 4;
-			case ShaderDataType::Int2:			return 4*2;
-			case ShaderDataType::Int3:			return 4*3;
-			case ShaderDataType::Int4:			return 4*3;
+			case DataType::Int:			return 4;
+			case DataType::Int2:			return 4*2;
+			case DataType::Int3:			return 4*3;
+			case DataType::Int4:			return 4*3;
 
-			case ShaderDataType::Bool:			return 1;
+			case DataType::Bool:			return 1;
+
 		}
 		EDNA_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
 	}
 
+	static PackingType PackingTypeFromString(const std::string& type)
+	{
+		if (type == "std140")		 return PackingType::std140;
+		else if (type == "std430")   return PackingType::std430;
+		else if (type == "packed")   return PackingType::packed;
+		else if (type == "shared")   return PackingType::shared;
+
+		EDNA_CORE_ASSERT(false, "Unknown packing type!");
+		return PackingType::None;
+	}
+
 	struct BufferElement
 	{
 		std::string Name;
-		ShaderDataType Type;
+		DataType Type;
 		uint32_t Size;
 		uint32_t Offset;
 
 		bool Normalised;
 
 		BufferElement() = default;
-		BufferElement(ShaderDataType type, const std::string& name, bool normalised = false)
+		BufferElement(DataType type, const std::string& name, bool normalised = false)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalised(normalised)
 		{	
 		}
@@ -50,21 +67,21 @@ namespace EDNA {
 		{
 			switch (Type)
 			{
-			case ShaderDataType::Float:			return 1;
-			case ShaderDataType::Float2:		return 2;
-			case ShaderDataType::Float3:		return 3;
-			case ShaderDataType::Float4:		return 4;
+			case DataType::Float:			return 1;
+			case DataType::Float2:		return 2;
+			case DataType::Float3:		return 3;
+			case DataType::Float4:		return 4;
 
-			case ShaderDataType::Mat2:			return 2 * 2;
-			case ShaderDataType::Mat3:			return 3 * 3;
-			case ShaderDataType::Mat4:			return 4 * 4;
+			case DataType::Mat2:			return 2 * 2;
+			case DataType::Mat3:			return 3 * 3;
+			case DataType::Mat4:			return 4 * 4;
 
-			case ShaderDataType::Int:			return 1;
-			case ShaderDataType::Int2:			return 2;
-			case ShaderDataType::Int3:			return 3;
-			case ShaderDataType::Int4:			return 3;
+			case DataType::Int:			return 1;
+			case DataType::Int2:			return 2;
+			case DataType::Int3:			return 3;
+			case DataType::Int4:			return 3;
 
-			case ShaderDataType::Bool:			return 1;
+			case DataType::Bool:			return 1;
 			}
 			EDNA_CORE_ASSERT(false, "Unknown ShaderDataType!");
 			return 0;
@@ -140,6 +157,52 @@ namespace EDNA {
 		virtual uint32_t GetCount() const = 0;
 
 		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
+	};
+
+
+	struct UniformLayoutElement
+	{
+		std::unordered_set<std::string> Name;
+		DataType Type;
+	};
+
+
+	struct UniformLayout {
+		UniformLayout() = default;
+
+	    int BindingIndex;
+		PackingType Packing;
+		std::unordered_set<std::string> Name;
+	    std::vector<UniformLayoutElement> Elements;
+
+		bool Merge(const UniformLayout& other)
+		{
+			if (BindingIndex != other.BindingIndex) return false;
+			if (Packing != other.Packing) return false;
+			if (Elements.size() != other.Elements.size()) return false;
+
+			// iterate through each layout element and check that the data types match, then merge the element names
+			for (size_t i = 0; i < Elements.size(); i++) 
+			{
+				if (Elements[i].Type != other.Elements[i].Type) return false;
+				Elements[i].Name.insert(other.Elements[i].Name.begin(), other.Elements[i].Name.end());
+			}
+			// merge layout name
+			Name.insert(other.Name.begin(), other.Name.end());
+			return true;
+		}
+	};
+	
+	class UniformBuffer 
+	{
+	public:
+		~UniformBuffer() = default;
+		UniformBuffer(const UniformLayout& layout);
+
+	private:
+		void SetupLayout(const UniformLayout& layout);
+		UniformLayout m_Layout;
+		std::vector<float> m_Data;
 	};
 }
 

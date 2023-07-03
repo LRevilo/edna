@@ -59,11 +59,11 @@ namespace EDNA {
 		s_Data.QuadVertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 
 		s_Data.QuadVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position"},
-			{ ShaderDataType::Float4, "a_Color"},
-			{ ShaderDataType::Float2, "a_TexCoord"},
-			{ ShaderDataType::Float, "a_TexIndex"},
-			{ ShaderDataType::Float, "a_TilingFactor"},
+			{ DataType::Float3, "a_Position"},
+			{ DataType::Float4, "a_Color"},
+			{ DataType::Float2, "a_TexCoord"},
+			{ DataType::Float, "a_TexIndex"},
+			{ DataType::Float, "a_TilingFactor"},
 		});
 
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);

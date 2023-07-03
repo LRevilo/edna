@@ -8,7 +8,7 @@ namespace EDNA {
 		None = 0,
 		// color
 		RGBA8,
-
+		RED_INTEGER,
 		// depth stencil
 		DEPTH24STENCIL8,
 

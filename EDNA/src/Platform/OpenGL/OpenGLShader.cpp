@@ -1,10 +1,12 @@
 #include "ednapch.h"
 #include "OpenGLShader.h"
-
+#include "EDNA/Renderer/Buffer.h"
 #include <fstream>
+#include <regex>
 #include <glad/glad.h>
  
 #include <glm/gtc/type_ptr.hpp>
+#include <map>
 
 
 
@@ -20,6 +22,29 @@ namespace EDNA {
 		EDNA_CORE_ASSERT(false, "Unknown shader type!");
 		return 0;
 	}
+
+	static DataType DataTypeFromString(const std::string& type)
+	{
+		if (type == "float")	   return DataType::Float;
+		else if (type == "vec2")   return DataType::Float2;
+		else if (type == "vec3")   return DataType::Float3;
+		else if (type == "vec4")   return DataType::Float4;
+		else if (type == "mat2")   return DataType::Mat2;
+		else if (type == "mat3")   return DataType::Mat3;
+		else if (type == "mat4")   return DataType::Mat4;
+		else if (type == "int")	   return DataType::Int;
+		else if (type == "int2")   return DataType::Int2;
+		else if (type == "int3")   return DataType::Int3;
+		else if (type == "int4")   return DataType::Int4;
+		else if (type == "bool")   return DataType::Bool;
+
+		EDNA_CORE_ASSERT(false, "Unknown data type!");
+		return DataType::None;
+	}
+
+
+
+
 
 	OpenGLShader::OpenGLShader(const std::string& filePath)
 	{
@@ -48,6 +73,7 @@ namespace EDNA {
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
 		Compile(sources);
+		ExtractUniformBuffers(sources);
 	}
 
 	OpenGLShader::~OpenGLShader()
@@ -73,6 +99,16 @@ namespace EDNA {
 	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
 	{
 		UploadUniformIntArray(name, values, count);
+	}
+
+	void OpenGLShader::SetMat2(const std::string& name, const glm::mat2& value)
+	{
+			UploadUniformMat2(name, value);
+	}
+
+	void OpenGLShader::SetMat3(const std::string& name, const glm::mat3& value)
+	{
+		UploadUniformMat3(name, value);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
@@ -131,6 +167,12 @@ namespace EDNA {
 		glUniform4f(location, values.x, values.y, values.z, values.w);
 	}
 
+	void OpenGLShader::UploadUniformMat2(const std::string& name, const glm::mat2& matrix)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniformMatrix2fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 	void OpenGLShader::UploadUniformMat3(const std::string& name, const glm::mat3& matrix)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -173,23 +215,92 @@ namespace EDNA {
 
 		while (pos != std::string::npos)
 		{
+			//find end of current line
 			size_t eol = source.find_first_of("\r\n", pos);
 			EDNA_CORE_ASSERT(eol != std::string::npos, "Syntax error!");
+
+			// beginning of actual shader source
 			size_t begin = pos + typeTokenLength + 1;
+
+			//extract the shader type (#type ShaderType)
 			std::string type = source.substr(begin, eol - begin);
 			EDNA_CORE_ASSERT(ShaderTypeFromString(type), "Invalid type specified!");
 
+			// Searches the string for the first character that does not match any of the characters specified in its arguments.
+			// When pos is specified, the search only includes characters at or after position pos, ignoring any possible occurrences before that character
+			// Returns The position of the first character that does not match.
+			// If no such characters are found, the function returns string::npos.
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol);
-
 			EDNA_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
 
-
+			// find the next type token 
 			pos = source.find(typeToken, nextLinePos);
-			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
-														
-		}
 
+			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
+
+		}
+		/*
+		for (auto& [shaderKey, shaderSource] : shaderSources)
+		{
+			EDNA_CORE_TRACE(shaderKey);
+			EDNA_CORE_TRACE(shaderSource);
+		}
+		*/
+		
 		return shaderSources;
+	}
+
+	void OpenGLShader::ExtractUniformBuffers(const std::unordered_map<GLenum, std::string> shaderSources)
+	{
+		std::map<int, UniformLayout> uniformLayoutMap;
+
+		std::regex uniformRegex(R"(layout\(\s*(\w+)\s*,\s*binding\s*=\s*(\d+)\s*\)\s*uniform\s*(\w+)\s*\{([^{}]+)\})");
+		std::regex dataRegex(R"(\s*([\w<>]+)\s+(\w+)\s*;)");
+
+		for (auto& [shaderType, shaderSource] : shaderSources)
+		{
+			
+			std::smatch matches;
+			std::smatch dataMatches;
+
+			std::string::const_iterator searchStart(shaderSource.cbegin());
+			std::string::const_iterator searchEnd(shaderSource.cend());
+			while (std::regex_search(searchStart, searchEnd, matches, uniformRegex))
+			{
+				UniformLayout layout;
+				layout.Packing = PackingTypeFromString(matches[1].str());
+				layout.BindingIndex = std::stoi(matches[2].str());
+				layout.Name.insert(matches[3].str());
+
+				std::string uniformContents = matches[4].str(); // Capture group of the entire block of text inside uniform struct
+
+				std::string::const_iterator dataSearchStart(uniformContents.cbegin());
+				std::string::const_iterator dataSearchEnd(uniformContents.cend());
+				while (std::regex_search(dataSearchStart, dataSearchEnd, dataMatches, dataRegex)) 
+				{
+					UniformLayoutElement layoutElement;
+					layoutElement.Type = DataTypeFromString(dataMatches[1].str());
+					layoutElement.Name.insert(dataMatches[2].str());
+					layout.Elements.push_back(layoutElement);
+					dataSearchStart = dataMatches.suffix().first;
+				}
+
+				if (!uniformLayoutMap.contains(layout.BindingIndex))
+				{
+					uniformLayoutMap[layout.BindingIndex] = layout;
+				}
+				else
+				{
+					bool mergeStatus = uniformLayoutMap[layout.BindingIndex].Merge(layout);
+					EDNA_CORE_ASSERT(mergeStatus, "Error merging uniform layout at index {0}", layout.BindingIndex);
+				}
+				searchStart = matches.suffix().first;
+			}
+
+	
+			
+		
+		}
 	}
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string> shaderSources)
@@ -200,13 +311,12 @@ namespace EDNA {
 		std::vector<GLenum> glShaderIDs;
 		glShaderIDs.reserve(shaderSources.size());
 
-		for (auto& kv : shaderSources)
-		{
-			GLenum type = kv.first;
-			const std::string& source = kv.second;
 
-			GLuint shader = glCreateShader(type);
-			const GLchar* source_c_str = source.c_str();
+		for (auto& [shaderType, shaderSource] : shaderSources)
+		{
+
+			GLuint shader = glCreateShader(shaderType);
+			const GLchar* source_c_str = shaderSource.c_str();
 			glShaderSource(shader, 1, &source_c_str, 0);
 
 

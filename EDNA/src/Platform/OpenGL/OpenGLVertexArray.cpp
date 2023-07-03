@@ -4,25 +4,25 @@
 
 namespace EDNA {
 
-	static GLenum ShaderDataTypeToOpenGLBase(ShaderDataType type)
+	static GLenum ShaderDataTypeToOpenGLBase(DataType type)
 	{
 		switch (type)
 		{
-		case ShaderDataType::Float:			return GL_FLOAT;
-		case ShaderDataType::Float2:		return GL_FLOAT;
-		case ShaderDataType::Float3:		return GL_FLOAT;
-		case ShaderDataType::Float4:		return GL_FLOAT;
+		case DataType::Float:			return GL_FLOAT;
+		case DataType::Float2:		return GL_FLOAT;
+		case DataType::Float3:		return GL_FLOAT;
+		case DataType::Float4:		return GL_FLOAT;
 
-		case ShaderDataType::Mat2:			return GL_FLOAT;
-		case ShaderDataType::Mat3:			return GL_FLOAT;
-		case ShaderDataType::Mat4:			return GL_FLOAT;
+		case DataType::Mat2:			return GL_FLOAT;
+		case DataType::Mat3:			return GL_FLOAT;
+		case DataType::Mat4:			return GL_FLOAT;
 
-		case ShaderDataType::Int:			return GL_INT;
-		case ShaderDataType::Int2:			return GL_INT;
-		case ShaderDataType::Int3:			return GL_INT;
-		case ShaderDataType::Int4:			return GL_INT;
+		case DataType::Int:			return GL_INT;
+		case DataType::Int2:			return GL_INT;
+		case DataType::Int3:			return GL_INT;
+		case DataType::Int4:			return GL_INT;
 
-		case ShaderDataType::Bool:			return GL_BOOL;
+		case DataType::Bool:			return GL_BOOL;
 		}
 		EDNA_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;

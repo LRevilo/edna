@@ -1,7 +1,7 @@
 #pragma once
 #include "entt.hpp"
 #include "EDNA/Core/Timestep.h"
-
+#include "EDNA/Core/UUID.h"
 namespace EDNA {
 
 	class Entity;
@@ -13,6 +13,7 @@ namespace EDNA {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
 		void DestroyEntity(Entity entity);
 
 

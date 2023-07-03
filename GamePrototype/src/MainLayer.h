@@ -28,6 +28,7 @@ namespace EDNA {
 		Ref<Shader> m_FlatColorShader;
 
 		Ref<Framebuffer> m_Framebuffer;
+		Ref<Framebuffer> m_ShadowFramebuffer;
 
 		Ref<Scene> m_Scene;
 

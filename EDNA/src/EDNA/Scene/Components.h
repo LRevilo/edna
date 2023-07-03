@@ -1,8 +1,19 @@
 #pragma once
 #include <glm/glm.hpp>
 #include "EDNA/Renderer/Camera.h" 
-#include "ScriptableEntity.h"
+#include "EDNA/Core/UUID.h"
+//#include "ScriptableEntity.h"
 namespace EDNA {
+
+	struct IDComponent 
+	{
+		UUID ID;
+
+		IDComponent() = default;
+		IDComponent(const IDComponent&) = default;
+		IDComponent(const UUID& uuid)
+			: ID(uuid) {}
+	};
 
 	struct TagComponent
 	{
@@ -27,6 +38,7 @@ namespace EDNA {
 		operator const glm::mat4& () const { return Transform; }
 	};
 
+	class ScriptableEntity;
 	struct NativeScriptComponent
 	{
 		ScriptableEntity* Instance = nullptr;

@@ -24,11 +24,21 @@ namespace EDNA {
 		m_OverworldTilesTexture = Texture2D::Create("Assets/Textures/OverworldTiles.png");
 		m_ShrubTile = SubTexture2D::CreateFromCoords(m_OverworldTilesTexture, { 7,4 }, { 16,16 }, { 1,1 });
 
+		// main frame buffer
 		FramebufferSpecification fbSpec;
-		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
+		fbSpec.Attachments = { FramebufferTextureFormat::RGBA8, /*FramebufferTextureFormat::RED_INTEGER, */ FramebufferTextureFormat::Depth};
 		fbSpec.Width = 1280;
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
+
+		// shadow map framebuffer
+		FramebufferSpecification fbSpecShadow;
+		fbSpecShadow.Attachments = { FramebufferTextureFormat::Depth };
+		fbSpecShadow.Width = 1280;
+		fbSpecShadow.Height = 720;
+		m_ShadowFramebuffer = Framebuffer::Create(fbSpecShadow);
+		
+		
 		m_Scene = CreateRef<Scene>();
 
 		m_CameraEntity = m_Scene->CreateEntity("Camera");
@@ -99,11 +109,14 @@ namespace EDNA {
 
 
 		Renderer2D::ResetStats();
-		RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
-		RenderCommand::Clear();
+
 
 
 		
+		//m_Framebuffer->Bind();
+
+		RenderCommand::SetClearColour({ 0.1, 0.1, 0.1, 1.0 });
+		RenderCommand::Clear();
 
 
 		m_Scene->OnUpdate(ts);
@@ -114,6 +127,11 @@ namespace EDNA {
 
 
 		//m_Framebuffer->Unbind();
+
+		
+
+
+		//m_Scene->OnUpdate(ts);
 
 
 	}
@@ -128,8 +146,8 @@ namespace EDNA {
 		ImGui::ColorEdit4("SquareColor", glm::value_ptr(squareColor));
 
 
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(1);
-		ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
+		uint64_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ 1280.0f, 720.0f }, ImVec2{0,1}, ImVec2{ 1,0 });
 
 
 		auto stats = Renderer2D::GetStats();

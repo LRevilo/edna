@@ -36,4 +36,20 @@ namespace EDNA {
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
+
+
+
+
+	UniformBuffer::UniformBuffer(const UniformLayout& layout)
+	{
+
+	}
+
+	void UniformBuffer::SetupLayout(const UniformLayout& layout)
+	{
+
+	}
+
 }
+
+
