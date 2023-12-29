@@ -31,6 +31,9 @@ namespace EDNA {
 
 
 
+
+
+
 	void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
 	{
 		EDNA_CORE_ASSERT(!Exists(name), "Shader already exists!");
@@ -43,13 +46,6 @@ namespace EDNA {
 		Add(name, shader);
 	}
 
-	Ref<Shader> ShaderLibrary::Load(const std::string& filePath)
-	{
-		auto shader = Shader::Create(filePath);
-		Add(shader);
-		return shader;
-	}
-
 	Ref<Shader> ShaderLibrary::Load(const std::string& name, const std::string& filePath)
 	{
 		auto shader = Shader::Create(filePath);
@@ -57,9 +53,17 @@ namespace EDNA {
 		return shader;
 	}
 
+	Ref<Shader> ShaderLibrary::Load(const std::string& filePath)
+	{
+		auto shader = Shader::Create(filePath);
+		Add(shader);
+		return shader;
+	}
+
 	Ref<Shader> ShaderLibrary::Get(const std::string& name)
 	{
-		EDNA_CORE_ASSERT(Exists(name), "Shader not found!");
+		EDNA_CORE_ASSERT(Exists(name), "Shader not found! " + name);
+		
 		return m_Shaders[name];
 	}
 

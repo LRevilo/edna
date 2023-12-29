@@ -33,6 +33,14 @@ namespace EDNA {
 		glCreateVertexArrays(1, &m_RendererID); 
 	}
 
+	OpenGLVertexArray::OpenGLVertexArray(const Mesh& mesh)
+	{
+		glCreateVertexArrays(1, &m_RendererID);
+
+
+
+	}
+
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
 		glDeleteVertexArrays(1, &m_RendererID);

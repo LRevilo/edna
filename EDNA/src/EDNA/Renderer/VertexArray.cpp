@@ -17,4 +17,15 @@ namespace EDNA {
 		return nullptr;
 	}
 
+	Ref<VertexArray> VertexArray::Create(const Mesh& mesh)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLVertexArray>(mesh);
+		}
+		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
 }

@@ -1,12 +1,14 @@
 #pragma once
 #include "EDNA/Renderer/VertexArray.h"
 
+
 namespace EDNA {
 
 	class OpenGLVertexArray : public VertexArray
 	{
 	public:
 		OpenGLVertexArray();
+		OpenGLVertexArray(const Mesh& mesh);
 		virtual ~OpenGLVertexArray();
 
 		virtual void Bind() const override;

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "EDNA/Renderer/Buffer.h"
+#include "EDNA/Renderer/Mesh.h"
 
 namespace EDNA {
 
@@ -22,6 +23,8 @@ namespace EDNA {
 
 
 		static Ref<VertexArray> Create();
+		static Ref<VertexArray> Create(const Mesh& mesh);
+
 
 	};
 }

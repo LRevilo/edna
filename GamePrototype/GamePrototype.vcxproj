@@ -59,6 +59,7 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\GamePrototype\</IntDir>
     <TargetName>GamePrototype</TargetName>
     <TargetExt>.exe</TargetExt>
+    <LibraryPath>..\EDNA\vendor\OpenAL-Soft\build\Debug;..\EDNA\vendor\libsndfile\build\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -66,6 +67,7 @@
     <IntDir>..\bin-int\Release-windows-x86_64\GamePrototype\</IntDir>
     <TargetName>GamePrototype</TargetName>
     <TargetExt>.exe</TargetExt>
+    <LibraryPath>..\EDNA\vendor\OpenAL-Soft\build\Release;..\EDNA\vendor\libsndfile\build\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -73,13 +75,14 @@
     <IntDir>..\bin-int\Dist-windows-x86_64\GamePrototype\</IntDir>
     <TargetName>GamePrototype</TargetName>
     <TargetExt>.exe</TargetExt>
+    <LibraryPath>..\EDNA\vendor\OpenAL-Soft\build\Release;..\EDNA\vendor\libsndfile\build\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,8 +98,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -116,8 +119,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -134,10 +137,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scripts\CameraController.h" />
+    <ClInclude Include="src\GameApp2D.h" />
     <ClInclude Include="src\MainLayer.h" />
+    <ClInclude Include="src\Scripts\PlayerMovementScript.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Scripts\RandomMovementScript.h" />
     <ClCompile Include="src\GameApp.cpp" />
+    <ClCompile Include="src\GameApp2D.cpp" />
     <ClCompile Include="src\MainLayer.cpp" />
   </ItemGroup>
   <ItemGroup>

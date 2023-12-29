@@ -1,4 +1,5 @@
 #include "ednapch.h"
+#include "Renderer.h"
 #include "Renderer2D.h"
 
 #include "VertexArray.h"
@@ -96,16 +97,18 @@ namespace EDNA {
 		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
 
 		int32_t samplers[s_Data.MaxTextureSlots];
-		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++) 
-		{
-			samplers[i] = i;
-		}
+		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++) { samplers[i] = i;}
 
-		s_Data.TextureShader = Shader::Create("Assets/Shaders/Texture.glsl");
+
+		Renderer::Shaders()->Load("Texture", "../EDNA/src/EDNA/Shaders/Texture.glsl");
+		s_Data.TextureShader = Renderer::Shaders()->Get("Texture");
+
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
 
 		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+
+
 
 		s_Data.QuadVertexPostions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
 		s_Data.QuadVertexPostions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
@@ -191,14 +194,13 @@ namespace EDNA {
 
 	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
 	{
-		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
-			FlushAndReset();
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) { FlushAndReset(); }
 
 		float  textureIndex = 0.0f;
 
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 		{
-			if (*s_Data.TextureSlots[i].get() == *texture.get())
+			if (*s_Data.TextureSlots[i] == *texture)
 			{
 				textureIndex = (float)i;
 				break;
@@ -229,15 +231,14 @@ namespace EDNA {
 
 	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<SubTexture2D>& subTexture, float tilingFactor, const glm::vec4& tintColor)
 	{
-		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
-			FlushAndReset();
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices) { FlushAndReset(); }
 
 		float  textureIndex = 0.0f;
 		const Ref<Texture2D> texture = subTexture->GetTexture();
 
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
 		{
-			if (*s_Data.TextureSlots[i].get() == *texture.get())
+			if (*s_Data.TextureSlots[i] == *texture)
 			{
 				textureIndex = (float)i;
 				break;

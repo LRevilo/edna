@@ -12,6 +12,12 @@
 #include "EDNA/Core/Timestep.h"
 
 
+// Audio --------------------
+#include "EDNA/Audio/AudioEngine.h"
+
+
+// -----------------------------
+
 // Input -------------------
 #include "EDNA/Core/Input.h"
 #include "EDNA/Core/KeyCodes.h"
@@ -43,4 +49,6 @@
 #include "EDNA/Renderer/OrthographicCamera.h"
 // ------------------------
 
+// Generators
+#include "EDNA/Generators/Generator.h"
 

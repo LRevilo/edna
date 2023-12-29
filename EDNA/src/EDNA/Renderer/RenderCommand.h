@@ -26,6 +26,15 @@ namespace EDNA {
 		{
 			s_RendererAPI->Clear();
 		}
+		inline static void ClearDepth()
+		{
+			s_RendererAPI->ClearDepth();
+		}
+
+		inline static void BindDepthMap(uint32_t id)
+		{
+			s_RendererAPI->BindDepthMap(id);
+		}
 
 		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t count = 0)
 		{

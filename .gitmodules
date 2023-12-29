@@ -10,3 +10,10 @@
 [submodule "EDNA/vendor/glm"]
 	path = EDNA/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "EDNA/vendor/OpenAL-Soft"]
+	path = EDNA/vendor/OpenAL-Soft
+	url = https://github.com/kcat/openal-soft
+
+[submodule "EDNA/vendor/libsndfile"]
+	path = EDNA/vendor/libsndfile
+	url = https://github.com/libsndfile/libsndfile

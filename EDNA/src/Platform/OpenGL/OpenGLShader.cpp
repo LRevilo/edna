@@ -18,6 +18,8 @@ namespace EDNA {
 			return GL_VERTEX_SHADER;
 		if (type == "fragment" || type == "pixel")
 			return GL_FRAGMENT_SHADER;
+		if (type == "geometry")
+			return GL_GEOMETRY_SHADER;
 
 		EDNA_CORE_ASSERT(false, "Unknown shader type!");
 		return 0;
@@ -52,6 +54,10 @@ namespace EDNA {
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 
+		GLenum error = glGetError();
+		if (error != GL_NO_ERROR) {
+			EDNA_CORE_ERROR("OpenGL Error: {0}", error);
+		}
 
 		// extract name
 		// assets/shaders/   texture   .glsl
@@ -83,7 +89,12 @@ namespace EDNA {
 
 	void OpenGLShader::Bind() const
 	{
+		//EDNA_CORE_INFO("BINDING SHADER {0}", m_RendererID);
 		glUseProgram(m_RendererID);
+		GLenum error = glGetError();
+		if (error != GL_NO_ERROR) {
+			EDNA_CORE_INFO("Error binding shader!");
+		}
 	}
 
 	void OpenGLShader::Unbind() const
@@ -99,6 +110,11 @@ namespace EDNA {
 	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
 	{
 		UploadUniformIntArray(name, values, count);
+	}
+
+	void OpenGLShader::SetFloatArray(const std::string& name, float* values, uint32_t count)
+	{
+		UploadUniformFloatArray(name, values, count);
 	}
 
 	void OpenGLShader::SetMat2(const std::string& name, const glm::mat2& value)
@@ -143,6 +159,12 @@ namespace EDNA {
 		glUniform1iv(location,  count, values);
 	}
 
+	void OpenGLShader::UploadUniformFloatArray(const std::string& name, float* values, uint32_t count)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1fv(location, count, values);
+	}
+
 	void OpenGLShader::UploadUniformFloat(const std::string& name, float value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -154,6 +176,7 @@ namespace EDNA {
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform2f(location, values.x, values.y);
 	}
+
 
 	void OpenGLShader::UploadUniformFloat3(const std::string& name, const glm::vec3& values)
 	{
@@ -183,6 +206,15 @@ namespace EDNA {
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
+	void OpenGLShader::UploadBuffers()
+	{
+		for (auto& uniformBuffer : m_UniformBuffers)
+		{
+			int bindingIndex = uniformBuffer.GetLayout()->BindingIndex;
+			//uniformBuffer->Data();
+		}
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& filePath)
@@ -249,6 +281,10 @@ namespace EDNA {
 		
 		return shaderSources;
 	}
+
+
+
+
 
 	void OpenGLShader::ExtractUniformBuffers(const std::unordered_map<GLenum, std::string> shaderSources)
 	{

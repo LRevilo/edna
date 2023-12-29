@@ -11,6 +11,8 @@ workspace "EDNA"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+
 -- Include directoris relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "EDNA/vendor/GLFW/include"
@@ -19,10 +21,17 @@ IncludeDir["ImGui"] = "EDNA/vendor/imgui"
 IncludeDir["glm"] = "EDNA/vendor/glm"
 IncludeDir["stb_image"] = "EDNA/vendor/stb_image"
 IncludeDir["entt"] = "EDNA/vendor/entt/include"
+IncludeDir["OpenAL_Soft"] = "EDNA/vendor/OpenAL-Soft/include"
+IncludeDir["libsndfile"] = "EDNA/vendor/libsndfile/include"
 
+
+-- include projects
 include "EDNA/vendor/GLFW"
 include "EDNA/vendor/Glad"
 include "EDNA/vendor/imgui"
+--include "EDNA/vendor/OpenAL-Soft"
+
+
 
 project "EDNA"
 	location "EDNA"
@@ -38,6 +47,7 @@ project "EDNA"
 	pchheader "ednapch.h"
 	pchsource "EDNA/src/ednapch.cpp"
 
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -46,6 +56,8 @@ project "EDNA"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
+
+
 	}
 	
 	includedirs
@@ -57,7 +69,14 @@ project "EDNA"
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.OpenAL_Soft}",
+		"%{IncludeDir.libsndfile}",
+
+		--"EDNA/vendor/OpenAL-Soft/include",
+		--"EDNA/vendor/OpenAL-Soft/src",
+		--"EDNA/vendor/OpenAL-Soft/src/common"
+
 	}
 
 	links
@@ -65,6 +84,9 @@ project "EDNA"
 		"GLFW",
 		"Glad",
 		"ImGui",
+		"OpenAL32",
+		--"OpenAL-Soft",
+		"sndfile.lib",
 		"opengl32.lib"
 	}
 
@@ -75,23 +97,27 @@ project "EDNA"
 		{
 				"EDNA_PLATFORM_WINDOWS",
 				"EDNA_BUILD_DLL",
-				"GLFW_INCLUDE_NONE"
+				"GLFW_INCLUDE_NONE",
+				"AL_LIBTYPE_STATIC"
 		}
 
 		filter "configurations:Debug"
 			defines "EDNA_DEBUG"
 			runtime "Debug"
 			symbols "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Debug", "EDNA/vendor/libsndfile/build/Debug"  }
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
 			runtime "Release"
 			optimize "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Release", "EDNA/vendor/libsndfile/build/Release"  }
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
 			runtime "Release"
 			optimize "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Release", "EDNA/vendor/libsndfile/build/Release" }
 
 
 project "GamePrototype"
@@ -105,6 +131,8 @@ project "GamePrototype"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -117,7 +145,10 @@ project "GamePrototype"
 		"EDNA/src",
 		"EDNA/vendor",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.OpenAL_Soft}",
+		"%{IncludeDir.libsndfile}"
+
 	}
 
 	links 
@@ -129,7 +160,8 @@ project "GamePrototype"
 		systemversion "latest"
 		defines
 		{
-				"EDNA_PLATFORM_WINDOWS"
+				"EDNA_PLATFORM_WINDOWS",
+				"AL_LIBTYPE_STATIC"
 		}
 
 
@@ -137,14 +169,17 @@ project "GamePrototype"
 			defines "EDNA_DEBUG"
 			runtime "Debug"
 			symbols "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Debug", "EDNA/vendor/libsndfile/build/Debug" }
 
 		filter "configurations:Release"
 			defines "EDNA_RELEASE"
 			runtime "Release"
 			optimize "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Release", "EDNA/vendor/libsndfile/build/Release" }
 
 		filter "configurations:Dist"
 			defines "EDNA_DIST"
 			runtime "Release"
 			optimize "on"
+			syslibdirs { "EDNA/vendor/OpenAL-Soft/build/Release", "EDNA/vendor/libsndfile/build/Release" }
 

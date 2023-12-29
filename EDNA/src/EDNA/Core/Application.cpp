@@ -7,19 +7,23 @@
 #include "EDNA/Renderer/Renderer.h"
 #include "EDNA/Core/Input.h"
 
+//#include "EDNA/Audio/AudioEngine.h"
+
 
 #include <GLFW/glfw3.h>
+
 
 namespace EDNA {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
-
+	
 
 	
 
 	Application::Application()
 	{
+		EDNA_CORE_INFO("Application Constructor");
 		EDNA_PROFILE_FUNCTION();
 
 		EDNA_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -28,12 +32,17 @@ namespace EDNA {
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
+		//SoundDevice::Get();
+		//SoundDevice::Get()->Init();
 
 		Renderer::Init();
+		Audio::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		m_UILayer = new UILayer();
+		PushOverlay(m_UILayer);
 		//----------
 
 
@@ -43,6 +52,8 @@ namespace EDNA {
 	Application::~Application()
 	{
 	}
+
+
 
 	void Application::PushLayer(Layer* layer)
 	{
@@ -64,9 +75,11 @@ namespace EDNA {
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
+
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
 			(*--it)->OnEvent(e);
+			// if event is handled, it doesn't get sent to the lower layers
 			if (e.Handled)
 				break;
 		}
@@ -90,7 +103,12 @@ namespace EDNA {
 					layer->OnUpdate(timestep);
 			}
 
-			
+			m_UILayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnUIRender();
+			m_UILayer->End();
+
+
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();

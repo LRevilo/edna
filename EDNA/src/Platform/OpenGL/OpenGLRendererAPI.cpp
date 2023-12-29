@@ -26,10 +26,34 @@ namespace EDNA {
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
+	void OpenGLRendererAPI::ClearDepth()
+	{
+		glClear(GL_DEPTH_BUFFER_BIT);
+	}
+
+	void OpenGLRendererAPI::BindDepthMap(uint32_t id)
+	{
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, id);
+	}
+
 	void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount)
 	{
-		uint32_t count = indexCount ? vertexArray->GetIndexBuffer()->GetCount() : indexCount;
+		vertexArray->Bind();
+		uint32_t count = indexCount ? indexCount : vertexArray->GetIndexBuffer()->GetCount();
+
+		//EDNA_CORE_INFO("Index count: {0}", count);
 		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
+
+		GLenum error = glGetError();
+		if (error != GL_NO_ERROR) {
+			EDNA_CORE_ERROR("OpenGL Error: {0}", error);
+		}
+
+
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		//EDNA_CORE_INFO("RenderAPI: end draw indexed");
+
 	}
 }

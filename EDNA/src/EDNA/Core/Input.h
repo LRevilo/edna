@@ -12,6 +12,7 @@ namespace EDNA {
 		static bool IsMouseButtonPressed(int button);
 
 		static std::pair<float, float> GetMousePosition();
+		static std::pair<float, float> GetMouseClientPosition();
 
 		static float GetMouseX();
 		static float GetMouseY();

@@ -7,7 +7,8 @@
 #include "EDNA/Events/Event.h"
 #include "EDNA/Events/ApplicationEvent.h"
 #include "EDNA/ImGui/ImGuiLayer.h"
-
+#include "EDNA/UI/UILayer.h"
+#include "EDNA/Audio/AudioEngine.h"
 
 #include "EDNA/Core/Timestep.h"
 
@@ -24,8 +25,10 @@ namespace EDNA {
 
 		void OnEvent(Event& e);
 
+
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
+
 
 	
 		inline Window& GetWindow() {return *m_Window;}
@@ -34,8 +37,15 @@ namespace EDNA {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
+
+
+	public:
+
+
 	private:
+
 		std::unique_ptr<Window> m_Window;
+		UILayer* m_UILayer;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		bool m_Minimized = false;
@@ -44,10 +54,13 @@ namespace EDNA {
 		
 
 
+
 		 
 
 	private:
 		static Application* s_Instance;
+		
+		
 	};
 
 	// To be defined in client

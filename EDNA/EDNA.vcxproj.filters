@@ -7,6 +7,9 @@
     <Filter Include="src\EDNA">
       <UniqueIdentifier>{B4301DCF-A0FD-77DA-C916-6682B542AD68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EDNA\Audio">
+      <UniqueIdentifier>{B575B06E-A143-A474-8AD7-149B764480D9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\EDNA\Core">
       <UniqueIdentifier>{8CE53468-F8A5-B09E-C1E0-F91B2D60F57A}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,9 @@
     </Filter>
     <Filter Include="src\EDNA\Renderer">
       <UniqueIdentifier>{DA7EEC68-4695-EAFE-8F0C-7620FB61BB86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EDNA\Scene">
+      <UniqueIdentifier>{D154EC6F-BD22-E075-A6B6-509C9223BCDA}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -60,6 +66,15 @@
     <ClInclude Include="src\EDNA.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Audio\AudioBuffer.h">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Audio\AudioEngine.h">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Audio\SoundDevice.h">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Core\Application.h">
       <Filter>src\EDNA\Core</Filter>
     </ClInclude>
@@ -90,6 +105,9 @@
     <ClInclude Include="src\EDNA\Core\Timestep.h">
       <Filter>src\EDNA\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Core\UUID.h">
+      <Filter>src\EDNA\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Core\Window.h">
       <Filter>src\EDNA\Core</Filter>
     </ClInclude>
@@ -114,10 +132,19 @@
     <ClInclude Include="src\EDNA\Renderer\Buffer.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Camera.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\Framebuffer.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Material.h">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Renderer\Mesh.h">
       <Filter>src\EDNA\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h">
@@ -149,6 +176,18 @@
     </ClInclude>
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h">
       <Filter>src\EDNA\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Scene\Components.h">
+      <Filter>src\EDNA\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Scene\Entity.h">
+      <Filter>src\EDNA\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Scene\Scene.h">
+      <Filter>src\EDNA\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h">
+      <Filter>src\EDNA\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1428,16 +1467,20 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\Scene\Scene.h" />
-    <ClInclude Include="src\EDNA\Renderer\Camera.h" />
-    <ClInclude Include="src\EDNA\Scene\Components.h" />
-    <ClInclude Include="src\EDNA\Scene\Entity.h" />
-    <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
-    <ClInclude Include="src\EDNA\Core\UUID.h" />
-    <ClInclude Include="src\EDNA\Renderer\Mesh.h" />
-    <ClInclude Include="src\EDNA\Renderer\Material.h" />
+    <ClInclude Include="src\EDNA\UI\UILayer.h" />
+    <ClInclude Include="src\EDNA\Generators\Generator.h" />
+    <ClInclude Include="src\EDNA\Generators\Noise.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EDNA\Audio\AudioBuffer.cpp">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Audio\AudioEngine.cpp">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Audio\SoundDevice.cpp">
+      <Filter>src\EDNA\Audio</Filter>
+    </ClCompile>
     <ClCompile Include="src\EDNA\Core\Application.cpp">
       <Filter>src\EDNA\Core</Filter>
     </ClCompile>
@@ -1450,6 +1493,9 @@
     <ClCompile Include="src\EDNA\Core\Log.cpp">
       <Filter>src\EDNA\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\EDNA\Core\UUID.cpp">
+      <Filter>src\EDNA\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp">
       <Filter>src\EDNA\ImGui</Filter>
     </ClCompile>
@@ -1459,7 +1505,16 @@
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\Camera.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\Framebuffer.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\Material.cpp">
+      <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Renderer\Mesh.cpp">
       <Filter>src\EDNA\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp">
@@ -1491,6 +1546,12 @@
     </ClCompile>
     <ClCompile Include="src\EDNA\Renderer\VertexArray.cpp">
       <Filter>src\EDNA\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Scene\Entity.cpp">
+      <Filter>src\EDNA\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Scene\Scene.cpp">
+      <Filter>src\EDNA\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1525,11 +1586,7 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\EDNA\Scene\Scene.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\Camera.cpp" />
-    <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
-    <ClCompile Include="src\EDNA\Core\UUID.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\Mesh.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\Material.cpp" />
+    <ClCompile Include="src\EDNA\UI\UILayer.cpp" />
+    <ClCompile Include="src\EDNA\Generators\Generator.cpp" />
   </ItemGroup>
 </Project>

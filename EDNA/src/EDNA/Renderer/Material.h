@@ -1,30 +1,41 @@
 #pragma once
-
-#include <EDNA/Renderer/Shader.h>
-#include <EDNA/Renderer/Texture.h>
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 #include <unordered_map>
-#include <EDNA/Renderer/Buffer.h>
-
+#include "Shader.h"
 
 namespace EDNA {
-
 
 	class Material
 	{
 	public:
-
-
-
-
-
-
-	private:
+		Material();
+		virtual void UploadBuffers();
+		std::string m_MaterialName = "Material";
+		std::string m_ShaderName = "Shader";
 		Ref<Shader> m_Shader;
-		std::unordered_map<std::string, Ref<Texture>> m_Textures;
+	};
 
-		std::vector<Ref<UniformBuffer>> m_UniformBuffers;
+	class GlyphMaterial : public Material
+	{
+	public:
+		GlyphMaterial();
+		void UploadBuffers() override;
 
+
+		float m_BezierPoints[16] = {
+		-0.5f, 0.f,
+		0.3f, 0.3f,
+		0.7f, -0.1f,
+		-0.5f, -0.3f,
+		0.4f, 0.8f,
+		-0.2f, 0.9f,
+		0.f, -0.3f,
+		0.f, 0.f};
+
+		int m_PointIndices[8] =
+		{
+			0,1,2,3,4,5,6,7
+		};
 
 	};
 

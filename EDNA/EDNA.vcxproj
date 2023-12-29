@@ -58,26 +58,29 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\EDNA\</IntDir>
     <TargetName>EDNA</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>vendor\OpenAL-Soft\build\Debug;vendor\libsndfile\build\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\bin\Release-windows-x86_64\EDNA\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\EDNA\</IntDir>
     <TargetName>EDNA</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>vendor\OpenAL-Soft\build\Release;vendor\libsndfile\build\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <OutDir>..\bin\Dist-windows-x86_64\EDNA\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\EDNA\</IntDir>
     <TargetName>EDNA</TargetName>
     <TargetExt>.lib</TargetExt>
+    <LibraryPath>vendor\OpenAL-Soft\build\Release;vendor\libsndfile\build\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;AL_LIBTYPE_STATIC;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;vendor\OpenAL-Soft\include;vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -89,7 +92,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenAL32.lib;sndfile.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,8 +100,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;AL_LIBTYPE_STATIC;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;vendor\OpenAL-Soft\include;vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -114,7 +117,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenAL32.lib;sndfile.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -122,8 +125,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>ednapch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;EDNA_BUILD_DLL;GLFW_INCLUDE_NONE;AL_LIBTYPE_STATIC;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\entt\include;vendor\OpenAL-Soft\include;vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -139,15 +142,15 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenAL32.lib;sndfile.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\EDNA\Renderer\Material.h" />
-    <ClInclude Include="src\EDNA\Renderer\Mesh.h" />
-    <ClInclude Include="src\EDNA\Core\UUID.h" />
-    <ClInclude Include="src\EDNA\Scene\Entity.h" />
+    <ClInclude Include="src\EDNA\Generators\Generator.h" />
     <ClInclude Include="src\EDNA.h" />
+    <ClInclude Include="src\EDNA\Audio\AudioBuffer.h" />
+    <ClInclude Include="src\EDNA\Audio\AudioEngine.h" />
+    <ClInclude Include="src\EDNA\Audio\SoundDevice.h" />
     <ClInclude Include="src\EDNA\Core\Application.h" />
     <ClInclude Include="src\EDNA\Core\Core.h" />
     <ClInclude Include="src\EDNA\Core\EntryPoint.h" />
@@ -158,17 +161,21 @@
     <ClInclude Include="src\EDNA\Core\Log.h" />
     <ClInclude Include="src\EDNA\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\EDNA\Core\Timestep.h" />
+    <ClInclude Include="src\EDNA\Core\UUID.h" />
     <ClInclude Include="src\EDNA\Core\Window.h" />
     <ClInclude Include="src\EDNA\Debug\Instrumentor.h" />
     <ClInclude Include="src\EDNA\Events\ApplicationEvent.h" />
     <ClInclude Include="src\EDNA\Events\Event.h" />
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
+    <ClInclude Include="src\EDNA\Generators\Noise.h" />
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
     <ClInclude Include="src\EDNA\Renderer\Camera.h" />
     <ClInclude Include="src\EDNA\Renderer\Framebuffer.h" />
     <ClInclude Include="src\EDNA\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\EDNA\Renderer\Material.h" />
+    <ClInclude Include="src\EDNA\Renderer\Mesh.h" />
     <ClInclude Include="src\EDNA\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\EDNA\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\EDNA\Renderer\RenderCommand.h" />
@@ -180,8 +187,10 @@
     <ClInclude Include="src\EDNA\Renderer\Texture.h" />
     <ClInclude Include="src\EDNA\Renderer\VertexArray.h" />
     <ClInclude Include="src\EDNA\Scene\Components.h" />
+    <ClInclude Include="src\EDNA\Scene\Entity.h" />
     <ClInclude Include="src\EDNA\Scene\Scene.h" />
     <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\EDNA\UI\UILayer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -610,19 +619,22 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EDNA\Renderer\Material.cpp" />
-    <ClCompile Include="src\EDNA\Core\UUID.cpp" />
-    <ClCompile Include="src\EDNA\Renderer\Mesh.cpp" />
-    <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
+    <ClCompile Include="src\EDNA\Generators\Generator.cpp" />
+    <ClCompile Include="src\EDNA\Audio\AudioBuffer.cpp" />
+    <ClCompile Include="src\EDNA\Audio\AudioEngine.cpp" />
+    <ClCompile Include="src\EDNA\Audio\SoundDevice.cpp" />
     <ClCompile Include="src\EDNA\Core\Application.cpp" />
     <ClCompile Include="src\EDNA\Core\Layer.cpp" />
     <ClCompile Include="src\EDNA\Core\LayerStack.cpp" />
     <ClCompile Include="src\EDNA\Core\Log.cpp" />
+    <ClCompile Include="src\EDNA\Core\UUID.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Camera.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Material.cpp" />
+    <ClCompile Include="src\EDNA\Renderer\Mesh.cpp" />
     <ClCompile Include="src\EDNA\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\EDNA\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\EDNA\Renderer\RenderCommand.cpp" />
@@ -633,7 +645,9 @@
     <ClCompile Include="src\EDNA\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Texture.cpp" />
     <ClCompile Include="src\EDNA\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\EDNA\Scene\Entity.cpp" />
     <ClCompile Include="src\EDNA\Scene\Scene.cpp" />
+    <ClCompile Include="src\EDNA\UI\UILayer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />

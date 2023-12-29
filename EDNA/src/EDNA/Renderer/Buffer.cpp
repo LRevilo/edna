@@ -25,6 +25,16 @@ namespace EDNA {
 		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
 		return nullptr;
 	}
+	Ref<VertexBuffer> VertexBuffer::Create(const Mesh& mesh)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLVertexBuffer>(mesh);
+		}
+		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
 	
 	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
@@ -37,7 +47,27 @@ namespace EDNA {
 		return nullptr;
 	}
 
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLIndexBuffer>(size);
+		}
+		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
 
+	Ref<IndexBuffer> IndexBuffer::Create(const Mesh& mesh)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:		EDNA_CORE_ASSERT(false, "RendererAPI::None not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLIndexBuffer>(mesh);
+		}
+		EDNA_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
 
 
 	UniformBuffer::UniformBuffer(const UniformLayout& layout)
@@ -50,6 +80,16 @@ namespace EDNA {
 
 	}
 
+	Ref<std::vector<float>> UniformBuffer::GetData()
+	{
+		return CreateRef<std::vector<float>>(m_Data);
+	}
+
+
+	Ref<UniformLayout> UniformBuffer::GetLayout()
+	{
+		return CreateRef<UniformLayout>(m_Layout);
+	}
 }
 
 

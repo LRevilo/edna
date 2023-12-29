@@ -67,6 +67,8 @@ namespace EDNA {
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
+
+		//EDNA_CORE_INFO("Texture Created: {0}", m_RendererID );
 	}
 	
 	OpenGLTexture2D::~OpenGLTexture2D()
@@ -76,6 +78,7 @@ namespace EDNA {
 	
 	void OpenGLTexture2D::SetData(void* data, uint32_t size)
 	{
+		
 		uint32_t bpp = m_DataFormat == GL_RGBA ? 4 : 3;
 		EDNA_CORE_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
 		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
@@ -83,6 +86,7 @@ namespace EDNA {
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
+		//EDNA_CORE_INFO("Binding texture slot: {0} \n Renderer: {1}", slot, m_RendererID);
 		glBindTextureUnit(slot, m_RendererID);
 	}
 

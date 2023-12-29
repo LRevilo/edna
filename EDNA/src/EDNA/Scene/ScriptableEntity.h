@@ -18,6 +18,9 @@ namespace EDNA {
 
 	protected:
 
+
+
+
 		virtual void OnCreate() {};
 		virtual void OnDestroy() {};
 		virtual void OnUpdate(Timestep ts) {};

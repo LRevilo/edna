@@ -18,6 +18,8 @@ class GamePrototype : public EDNA::Application
 public:
 	GamePrototype() 
 	{
+		EDNA_INFO("GamePrototype constructor");
+
 		PushLayer(new EDNA::MainLayer());
 
 	}
@@ -29,5 +31,6 @@ public:
 
 EDNA::Application* EDNA::CreateApplication()
 {
+	EDNA_INFO("CreateApplication");
 	return new GamePrototype();
 }     

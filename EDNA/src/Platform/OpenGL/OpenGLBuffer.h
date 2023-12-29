@@ -9,6 +9,8 @@ namespace EDNA {
 	public:
 		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
+		OpenGLVertexBuffer(const Mesh& mesh);
+
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void Bind() const override;
@@ -30,7 +32,9 @@ namespace EDNA {
 	class OpenGLIndexBuffer : public IndexBuffer
 	{
 	public:
+		OpenGLIndexBuffer(uint32_t count);
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
+		OpenGLIndexBuffer(const Mesh& mesh);
 		virtual ~OpenGLIndexBuffer();
 
 		virtual void Bind() const;
