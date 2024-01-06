@@ -131,10 +131,10 @@ namespace EDNA {
 			if (cameraAttachmentComponent.Active)
 			{
 				smoothingFactor = cameraAttachmentComponent.SmoothingFactor;
-				cameraAttachmentTransform = transformComponent.Transform;
-				cameraAttachmentTransform[3][0] += cameraAttachmentComponent.Offset.x;
-				cameraAttachmentTransform[3][1] += cameraAttachmentComponent.Offset.y;
-				cameraAttachmentTransform[3][2] += cameraAttachmentComponent.Offset.z;
+				cameraAttachmentTransform = glm::mat4{ 1.f };// transformComponent.Transform;
+				cameraAttachmentTransform[3][0] = transformComponent.Transform[3][0] + cameraAttachmentComponent.Offset.x;
+				cameraAttachmentTransform[3][1] = transformComponent.Transform[3][1] + cameraAttachmentComponent.Offset.y;
+				cameraAttachmentTransform[3][2] = transformComponent.Transform[3][2] + cameraAttachmentComponent.Offset.z;
 				break;
 			}
 		}
@@ -205,33 +205,33 @@ namespace EDNA {
 
 		
 			RenderCommand::Clear();
-			Renderer::BeginScene(*m_SceneCamera, *m_SceneCameraTransform, m_LightProjection, m_LightTransform);
-			
-			// Shadow pass
-			// 
-			Renderer::BeginShadowPass();
-			m_ShadowFramebuffer->Bind();
-			RenderCommand::ClearDepth();
-			Renderer::OnWindowResize(m_ShadowWidth, m_ShadowHeight);
-			auto shadowCasterView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent, ShadowCasterComponent>();
-			for (auto entity : shadowCasterView)
-			{
-				auto [render, transform, mesh] = shadowCasterView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
-				Renderer::DrawMeshShadow(mesh.MeshData, transform);
-			}
-			m_ShadowFramebuffer->Unbind();
-			Renderer::EndShadowPass();
-
-
-			// 3D Pass
-			Renderer::OnWindowResize(m_ViewportWidth, m_ViewportHeight);
-			auto renderableView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent>();
-			for (auto entity : renderableView)
-			{
-				auto [render, transform, mesh] = renderableView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
-				Renderer::DrawMesh(mesh.MeshData, transform);
-			}
-			Renderer::EndScene();
+			  Renderer::BeginScene(*m_SceneCamera, *m_SceneCameraTransform, m_LightProjection, m_LightTransform);
+			  
+			  // Shadow pass
+			  // 
+			  Renderer::BeginShadowPass();
+			  m_ShadowFramebuffer->Bind();
+			  RenderCommand::ClearDepth();
+			  Renderer::OnWindowResize(m_ShadowWidth, m_ShadowHeight);
+			  auto shadowCasterView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent, ShadowCasterComponent>();
+			  for (auto entity : shadowCasterView)
+			  {
+			  	auto [render, transform, mesh] = shadowCasterView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
+			  	Renderer::DrawMeshShadow(mesh.MeshData, transform);
+			  }
+			  m_ShadowFramebuffer->Unbind();
+			  Renderer::EndShadowPass();
+			  
+			  
+			  // 3D Pass
+			  Renderer::OnWindowResize(m_ViewportWidth, m_ViewportHeight);
+			  auto renderableView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent>();
+			  for (auto entity : renderableView)
+			  {
+			  	auto [render, transform, mesh] = renderableView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
+			  	Renderer::DrawMesh(mesh.MeshData, transform);
+			  }
+			  Renderer::EndScene();
 
 
 			// 2D pass 

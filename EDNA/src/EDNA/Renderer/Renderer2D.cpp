@@ -128,6 +128,7 @@ namespace EDNA {
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
+	
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 

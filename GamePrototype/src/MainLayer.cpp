@@ -40,6 +40,10 @@ namespace EDNA {
 		m_GlyphMaterial = CreateRef<GlyphMaterial>();
 		m_GlyphMaterial->m_ShaderName = "GlyphShader";
 
+		m_DebugMaterial = CreateRef<DebugMaterial>();
+		m_DebugMaterial->m_ShaderName = "DebugShader";
+		m_DebugMaterial->Bits = 0b1111111110000001100000011000000110000001100000011000000111111111;
+
 
 		// main frame buffer
 		FramebufferSpecification fbSpec;
@@ -88,19 +92,19 @@ namespace EDNA {
 		m_OtherSquareEntity.AddComponent<MeshComponent>();
 
 		auto& mesh = m_OtherSquareEntity.GetComponent<MeshComponent>();
-		mesh.MeshData.PlaneMesh(5.f,16);
+		mesh.MeshData.PlaneMesh(0.2f,2);
 		mesh.MeshData.m_Material = m_GlyphMaterial;
 
 
 
 		m_PlaneEntity = m_Scene->CreateEntity("FloorPlane");
-		m_PlaneEntity.AddComponent<TransformComponent>(glm::translate(glm::mat4(1.0f), glm::vec3(-5.f, -5.f, 0.f)));
+		m_PlaneEntity.AddComponent<TransformComponent>(glm::translate(glm::mat4(1.0f), glm::vec3(2.5f, 1.5f, 0.f)));
 		m_PlaneEntity.AddComponent<RenderableComponent>();
 		m_PlaneEntity.AddComponent<MeshComponent>();
 		auto& plane = m_PlaneEntity.GetComponent<MeshComponent>();
-		plane.MeshData.PlaneMesh(0.f);
+		plane.MeshData.PlaneMesh(5.f,16);
 
-		plane.MeshData.m_Material = m_GlyphMaterial;;
+		plane.MeshData.m_Material = m_DebugMaterial;
 		//plane.MeshData.m_Material->m_MaterialName = "Material";
 		//plane.MeshData.m_Material->m_ShaderName = "3DShader";
 
@@ -116,17 +120,17 @@ namespace EDNA {
 			transform[0][0] = ((101 * i) % 17) / 6.f;
 			transform[1][0] = ((37 * i) % 55) / 11.f;
 			transform[2][0] = ((57 * i) % 5) / 3.f;
-
+			
 			transform[0][1] = ((11 * i) % 7) / 6.f;
 			transform[1][1] = ((19 * i) % 5) / 11.f;
 			transform[2][1] = ((31 * i) % 73) / 7.f;
-
+			
 			transform[0][2] = ((41 * i) % 13) / 3.f;
 			transform[1][2] = ((23 * i) % 7) / 7.f;
 			transform[2][2] = ((19 * i) % 11) / 7.f;
 
 			m_AnotherSquareEntity.AddComponent<TransformComponent>(transform);
-			m_AnotherSquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, rand,1.f - rand,1.0f });
+			m_AnotherSquareEntity.AddComponent<SpriteRendererComponent>(m_CheckerBoardTexture, glm::vec4{ 0.0f, 1.0f,0.0f,1.0f });
 			m_AnotherSquareEntity.AddComponent<NativeScriptComponent>().Bind<RandomMovementScript>();
 		}
 
@@ -194,7 +198,17 @@ namespace EDNA {
 		trans.Transform[3][1] = cam_trans.Transform[3][1] + ray_dir.y * radius;
 		trans.Transform[3][2] = cam_trans.Transform[3][2] + ray_dir.z * radius;
 
+		auto& player_trans = m_SquareEntity.GetComponent<TransformComponent>();
+		
 
+		glm::vec3 position = glm::vec3(player_trans.Transform[3][0], player_trans.Transform[3][1], player_trans.Transform[3][2]);  // Camera position
+		glm::vec3 target = glm::vec3(player_trans.Transform[3][0]+ray_dir.x, player_trans.Transform[3][1]+ray_dir.y,0);    // Target position (direction to face)
+		glm::vec3 up = glm::vec3(0.0f, 0.0f, 1.0f);         // Up vector
+
+		glm::mat4 viewMatrix = glm::lookAt(position, target, up);
+
+		player_trans.Transform = glm::inverse(viewMatrix);//glm::rotate(player_trans.Transform, 0.01f,glm::vec3(0.f,0.f,1.f));
+		// blows up when mouse is at origin
 
 	}
 
@@ -282,7 +296,7 @@ namespace EDNA {
 		cubeEntity.AddComponent<RenderableComponent>();
 		cubeEntity.AddComponent<ShadowCasterComponent>();
 		cubeEntity.AddComponent<MeshComponent>();
-
+		cubeEntity.AddComponent<NativeScriptComponent>().Bind<RandomMovementScript>();
 		auto& mesh = cubeEntity.GetComponent<MeshComponent>();
 		mesh.MeshData.CubeMesh(color);
 

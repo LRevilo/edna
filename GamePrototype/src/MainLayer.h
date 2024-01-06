@@ -92,6 +92,9 @@ namespace EDNA {
 
 		Ref<Material> m_Material;
 		Ref<GlyphMaterial> m_GlyphMaterial;
+		Ref<Material> m_TextureMaterial;
+
+		Ref<DebugMaterial> m_DebugMaterial;
 
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 

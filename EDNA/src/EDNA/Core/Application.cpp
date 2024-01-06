@@ -36,6 +36,7 @@ namespace EDNA {
 		//SoundDevice::Get()->Init();
 
 		Renderer::Init();
+		
 		Audio::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();

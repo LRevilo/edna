@@ -18,6 +18,7 @@ namespace EDNA {
 		virtual void Unbind() const = 0;
 
 		virtual void SetInt(const std::string& name, int value) = 0;
+		virtual void SetUInt(const std::string& name, uint32_t value) = 0;
 		virtual void SetIntArray(const std::string& name, int* values, uint32_t count) = 0;
 		virtual void SetFloatArray(const std::string& name, float* values, uint32_t count) = 0;
 		virtual void SetMat2(const std::string& name, const glm::mat2& value) = 0;

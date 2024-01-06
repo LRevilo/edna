@@ -31,6 +31,12 @@ namespace EDNA {
 		glClear(GL_DEPTH_BUFFER_BIT);
 	}
 
+	void OpenGLRendererAPI::EnableDepth(bool depth)
+	{
+		if (depth) { glEnable(GL_DEPTH_TEST); }
+		else {glDisable(GL_DEPTH_TEST);}
+	}
+
 	void OpenGLRendererAPI::BindDepthMap(uint32_t id)
 	{
 		glActiveTexture(GL_TEXTURE0);

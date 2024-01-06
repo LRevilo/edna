@@ -18,6 +18,7 @@ namespace EDNA {
 		static void EndScene();
 		static void Flush();
 
+
 		// Primitives
 
 		static void DrawQuad(const glm::mat4& transform, const glm::vec4& color);

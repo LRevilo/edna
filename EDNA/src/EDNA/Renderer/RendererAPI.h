@@ -23,6 +23,7 @@ namespace EDNA {
 		virtual void SetClearColour(const glm::vec4& colour) = 0;
 		virtual void Clear() = 0;
 		virtual void ClearDepth() = 0;
+		virtual void EnableDepth(bool depth) = 0;
 		virtual void BindDepthMap(uint32_t id) = 0;
 
 		virtual void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;

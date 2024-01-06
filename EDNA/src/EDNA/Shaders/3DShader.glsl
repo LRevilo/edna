@@ -52,6 +52,8 @@ in VS_OUT {
 //uniform sampler2D diffuseTexture;
 uniform sampler2D shadowMap;
 
+uniform sampler2D Texture1;
+
 uniform mat4 u_LightSpace;
 uniform vec3 u_LightPosition;
 uniform vec3 u_CameraPosition;

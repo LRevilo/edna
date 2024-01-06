@@ -31,6 +31,11 @@ namespace EDNA {
 			s_RendererAPI->ClearDepth();
 		}
 
+		inline static void EnableDepth(bool depth)
+		{
+			s_RendererAPI->EnableDepth(depth);
+		}
+
 		inline static void BindDepthMap(uint32_t id)
 		{
 			s_RendererAPI->BindDepthMap(id);

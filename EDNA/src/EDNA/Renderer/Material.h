@@ -21,7 +21,6 @@ namespace EDNA {
 		GlyphMaterial();
 		void UploadBuffers() override;
 
-
 		float m_BezierPoints[16] = {
 		-0.5f, 0.f,
 		0.3f, 0.3f,
@@ -36,6 +35,16 @@ namespace EDNA {
 		{
 			0,1,2,3,4,5,6,7
 		};
+
+	};
+
+	class DebugMaterial : public Material
+	{
+	public:
+		DebugMaterial();
+		void UploadBuffers() override;
+
+		uint64_t Bits = 0;
 
 	};
 

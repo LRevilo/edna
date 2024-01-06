@@ -107,6 +107,11 @@ namespace EDNA {
 		UploadUniformInt(name, value);
 	}
 
+	void OpenGLShader::SetUInt(const std::string& name, uint32_t value)
+	{
+		UploadUniformUInt(name, value);
+	}
+
 	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
 	{
 		UploadUniformIntArray(name, values, count);
@@ -151,6 +156,12 @@ namespace EDNA {
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1i(location, value);
+	}
+
+	void OpenGLShader::UploadUniformUInt(const std::string& name, uint32_t value)
+	{
+		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+		glUniform1ui(location, value);
 	}
 
 	void OpenGLShader::UploadUniformIntArray(const std::string& name, int* values, uint32_t count)
