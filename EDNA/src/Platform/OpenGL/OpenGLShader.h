@@ -54,6 +54,7 @@ namespace EDNA {
 		std::string ReadFile(const std::string& filePath);
 			
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
+		std::string ReplaceIncludes(const std::string& source);
 		void ExtractUniformBuffers(const std::unordered_map<GLenum, std::string> shaderSources);
 
 		void Compile(const std::unordered_map<GLenum, std::string> shaderSources);

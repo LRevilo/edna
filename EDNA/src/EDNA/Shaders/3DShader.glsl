@@ -6,7 +6,6 @@ layout(location = 1) in vec3 a_Normal;
 layout(location = 2) in vec2 a_TexCoord;
 layout(location = 3) in vec4 a_Color;
 
-
 uniform mat4 u_ViewProjection;
 uniform mat4 u_Transform;
 uniform mat4 u_LightSpace;
@@ -20,8 +19,6 @@ out VS_OUT {
     vec4 Color;
     vec4 FragPosLightSpace;
 } vs_out;
-
-
 
 void main()
 {
@@ -60,14 +57,12 @@ uniform vec3 u_CameraPosition;
 
 //uniform vec3 lightPos;
 //uniform vec3 viewPos;
-vec2 poissonDisk[4] = vec2[](
-  vec2( -0.94201624, -0.39906216 ),
-  vec2( 0.94558609, -0.76890725 ),
-  vec2( -0.094184101, -0.92938870 ),
-  vec2( 0.34495938, 0.29387760 )
-);
-
-
+//vec2 poissonDisk[4] = vec2[](
+//  vec2( -0.94201624, -0.39906216 ),
+//  vec2( 0.94558609, -0.76890725 ),
+//  vec2( -0.094184101, -0.92938870 ),
+//  vec2( 0.34495938, 0.29387760 )
+//);
 
 float ShadowCalculation(vec4 fragPosLightSpace, float inbias)
 {
@@ -98,7 +93,6 @@ void main()
     vec3 lightPos = u_LightPosition;
     vec3 viewPos = u_CameraPosition;
 
-
     vec3 color = vec3(1.0,0.5,0.0);
     vec3 normal = normalize(fs_in.Normal);
     vec3 lightColor = vec3(1.0);
@@ -114,6 +108,8 @@ void main()
     vec3 halfwayDir = normalize(lightDir + viewDir);  
     spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
     vec3 specular = spec * lightColor;    
+
+
     // calculate shadow
     float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);  
 

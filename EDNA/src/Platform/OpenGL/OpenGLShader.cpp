@@ -2,6 +2,10 @@
 #include "OpenGLShader.h"
 #include "EDNA/Renderer/Buffer.h"
 #include <fstream>
+
+#include <iostream>
+
+#include <sstream>
 #include <regex>
 #include <glad/glad.h>
  
@@ -248,9 +252,13 @@ namespace EDNA {
 		return result;
 	}
 
-	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
+	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& in_source)
 	{
 		std::unordered_map<GLenum, std::string> shaderSources;
+
+		const std::string source = ReplaceIncludes(in_source);
+
+
 
 		const char* typeToken = "#type";
 		size_t typeTokenLength = strlen(typeToken);
@@ -282,18 +290,66 @@ namespace EDNA {
 			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
 
 		}
-		/*
+	
+
+		// add includes
 		for (auto& [shaderKey, shaderSource] : shaderSources)
 		{
-			EDNA_CORE_TRACE(shaderKey);
-			EDNA_CORE_TRACE(shaderSource);
+			//EDNA_CORE_TRACE(shaderKey);
+			//EDNA_CORE_TRACE(shaderSource);
+
+			//shaderSource = ReplaceIncludes(shaderSource);
+			//EDNA_CORE_INFO(shaderSource);
+
 		}
-		*/
+	
 		
 		return shaderSources;
 	}
 
+	std::string OpenGLShader::ReplaceIncludes(const std::string& source)
+	{	
+		// TODO: need to refactor chat gpt code?
+		// Replaces #include "somefile.glsl" with the actual code
+		
+		// Use a regex to match #include "somefilename.txt" lines
+		std::regex includeRegex(R"(\s*#include\s*"\s*(.*?)\s*")");
 
+		// Create a match object to store the result
+		std::smatch match;
+
+		// Find all matches in the input string
+		std::string result = source;
+		while (std::regex_search(result, match, includeRegex)) {
+			try {
+				// Read the content of the file
+				std::ifstream file(match[1]);
+				if (file.is_open()) {
+					std::ostringstream fileContent;
+					fileContent << file.rdbuf();
+
+					// Replace the entire #include line with the file content
+					result = std::regex_replace(result, includeRegex, "\r\n" + fileContent.str());
+					file.close();
+				}
+				else {
+					// Handle file not found error
+					EDNA_CORE_ERROR("File not found: {}" , match[1].str());
+					// Move to the next match
+					result = match.suffix();
+				}
+			}
+			catch (const std::exception& e) {
+				// Handle file read error
+				EDNA_CORE_ERROR("Error reading file: {}", match[1].str());
+				// Move to the next match
+				result = match.suffix();
+			}
+		}
+
+		return result;
+
+	}
 
 
 

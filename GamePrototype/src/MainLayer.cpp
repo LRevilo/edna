@@ -40,8 +40,11 @@ namespace EDNA {
 		m_GlyphMaterial = CreateRef<GlyphMaterial>();
 		m_GlyphMaterial->m_ShaderName = "GlyphShader";
 
+
+
+		Renderer::Shaders()->Load("GrassShader", "Assets/Shaders/GrassShader.glsl");
 		m_DebugMaterial = CreateRef<DebugMaterial>();
-		m_DebugMaterial->m_ShaderName = "DebugShader";
+		m_DebugMaterial->m_ShaderName = "GrassShader";
 		m_DebugMaterial->Bits = 0b1111111110000001100000011000000110000001100000011000000111111111;
 
 
@@ -101,6 +104,7 @@ namespace EDNA {
 		m_PlaneEntity.AddComponent<TransformComponent>(glm::translate(glm::mat4(1.0f), glm::vec3(2.5f, 1.5f, 0.f)));
 		m_PlaneEntity.AddComponent<RenderableComponent>();
 		m_PlaneEntity.AddComponent<MeshComponent>();
+		m_PlaneEntity.AddComponent<ShadowCasterComponent>();
 		auto& plane = m_PlaneEntity.GetComponent<MeshComponent>();
 		plane.MeshData.PlaneMesh(5.f,16);
 

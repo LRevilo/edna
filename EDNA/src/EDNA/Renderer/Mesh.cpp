@@ -70,7 +70,7 @@ namespace EDNA {
                 vertex.Position.y = scale * dy;
                 vertex.Normal = glm::vec3(0.f, 0.f, 1.f);
                 vertex.UV = glm::vec2(x * ds, y * ds);
-                vertex.Color = glm::vec4(x * ds, y * ds, 0.f, 1.0f);
+                vertex.Color = floor(8.f * glm::vec4(x * ds, y * ds, 0.f, 1.0f)) / 8.f;
                 m_Vertices.push_back(vertex);
             }
         }
