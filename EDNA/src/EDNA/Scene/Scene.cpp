@@ -131,10 +131,28 @@ namespace EDNA {
 			if (cameraAttachmentComponent.Active)
 			{
 				smoothingFactor = cameraAttachmentComponent.SmoothingFactor;
-				cameraAttachmentTransform = glm::mat4{ 1.f };// transformComponent.Transform;
-				cameraAttachmentTransform[3][0] = transformComponent.Transform[3][0] + cameraAttachmentComponent.Offset.x;
-				cameraAttachmentTransform[3][1] = transformComponent.Transform[3][1] + cameraAttachmentComponent.Offset.y;
-				cameraAttachmentTransform[3][2] = transformComponent.Transform[3][2] + cameraAttachmentComponent.Offset.z;
+				//cameraAttachmentTransform = glm::inverse(glm::lookAt(glm::vec3(0), glm::vec3(0,0, -1), glm::vec3(0,0,1)));//glm::mat4{ 1.f };// transformComponent.Transform;
+				auto x = transformComponent.Transform[3][0] + cameraAttachmentComponent.Offset.x;
+				auto y = transformComponent.Transform[3][1] + cameraAttachmentComponent.Offset.y;
+				auto z = transformComponent.Transform[3][2] + cameraAttachmentComponent.Offset.z;
+
+				cameraAttachmentTransform[3][0] = x;
+				cameraAttachmentTransform[3][1] = y;
+				cameraAttachmentTransform[3][2] = z;
+
+
+
+				auto dx = cameraAttachmentComponent.Direction.x;
+				auto dy = cameraAttachmentComponent.Direction.y;
+				auto dz = cameraAttachmentComponent.Direction.z;
+
+
+				cameraAttachmentTransform = glm::inverse(glm::lookAt(
+					glm::vec3(x - dx, y - dy, z - dz),
+					glm::vec3(x, y, z),
+					glm::vec3(0.f, 0.f, 1.f)));
+
+
 				break;
 			}
 		}
@@ -204,37 +222,39 @@ namespace EDNA {
 			// end scene renders all meshes with same shaer in 1 draw call
 
 		
+			
+			Renderer::BeginScene(*m_SceneCamera, *m_SceneCameraTransform, m_LightProjection, m_LightTransform);
+			  
+			// Shadow pass
+			// 
+			Renderer::BeginShadowPass();
+			m_ShadowFramebuffer->Bind();
+			RenderCommand::ClearDepth();
+			Renderer::OnWindowResize(m_ShadowWidth, m_ShadowHeight);
+			auto shadowCasterView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent, ShadowCasterComponent>();
+			for (auto entity : shadowCasterView)
+			{
+				auto [render, transform, mesh] = shadowCasterView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
+				Renderer::DrawMeshShadow(mesh.MeshData, transform);
+			}
+			m_ShadowFramebuffer->Unbind();
+			Renderer::EndShadowPass();
+			
+			RenderCommand::EnableDepth(true);
 			RenderCommand::Clear();
-			  Renderer::BeginScene(*m_SceneCamera, *m_SceneCameraTransform, m_LightProjection, m_LightTransform);
-			  
-			  // Shadow pass
-			  // 
-			  Renderer::BeginShadowPass();
-			  m_ShadowFramebuffer->Bind();
-			  RenderCommand::ClearDepth();
-			  Renderer::OnWindowResize(m_ShadowWidth, m_ShadowHeight);
-			  auto shadowCasterView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent, ShadowCasterComponent>();
-			  for (auto entity : shadowCasterView)
-			  {
-			  	auto [render, transform, mesh] = shadowCasterView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
-			  	Renderer::DrawMeshShadow(mesh.MeshData, transform);
-			  }
-			  m_ShadowFramebuffer->Unbind();
-			  Renderer::EndShadowPass();
-			  
-			  
-			  // 3D Pass
-			  Renderer::OnWindowResize(m_ViewportWidth, m_ViewportHeight);
-			  auto renderableView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent>();
-			  for (auto entity : renderableView)
-			  {
-			  	auto [render, transform, mesh] = renderableView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
-			  	Renderer::DrawMesh(mesh.MeshData, transform);
-			  }
-			  Renderer::EndScene();
+			// 3D Pass
+			Renderer::OnWindowResize(m_ViewportWidth, m_ViewportHeight);
+			auto renderableView = m_Registry.view<RenderableComponent, TransformComponent, MeshComponent>();
+			for (auto entity : renderableView)
+			{
+				auto [render, transform, mesh] = renderableView.get<RenderableComponent, TransformComponent, MeshComponent>(entity);
+				Renderer::DrawMesh(mesh.MeshData, transform);
+			}
+			Renderer::EndScene();
 
 
 			// 2D pass 
+
 			Renderer2D::BeginScene(*m_SceneCamera, *m_SceneCameraTransform);
 			auto spriteView = m_Registry.view<TransformComponent, SpriteRendererComponent>();
 			int i = 0;

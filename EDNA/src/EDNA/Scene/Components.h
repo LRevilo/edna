@@ -15,6 +15,8 @@ namespace EDNA {
 		IDComponent(const IDComponent&) = default;
 		IDComponent(const UUID& uuid)
 			: ID(uuid) {}
+
+		const char* Name() { return "ID"; }
 	};
 
 	struct TagComponent
@@ -25,6 +27,8 @@ namespace EDNA {
 		TagComponent(const TagComponent&) = default;
 		TagComponent(const std::string& tag)
 			: Tag(tag) {}
+
+		const char* Name() { return "Tag"; }
 	};
 
 	struct TransformComponent
@@ -38,6 +42,8 @@ namespace EDNA {
 
 		operator glm::mat4& () { return Transform; }
 		operator const glm::mat4& () const { return Transform; }
+
+		const char* Name() { return "Transform"; }
 	};
 
 	class ScriptableEntity;
@@ -55,6 +61,7 @@ namespace EDNA {
 			DestroyScript = [](NativeScriptComponent* nsc) {delete nsc->Instance; nsc->Instance = nullptr; };
 
 		}
+		const char* Name() { return "NativeScript"; }
 
 	};
 
@@ -70,6 +77,8 @@ namespace EDNA {
 			: Color(color) {}
 		SpriteRendererComponent(const Ref<Texture2D> &texture, const glm::vec4& color)
 			: Texture(texture), Color(color) {}
+
+		const char* Name() { return "SpriteRenderer"; }
 	};
 
 	struct CameraComponent
@@ -83,6 +92,7 @@ namespace EDNA {
 		CameraComponent(const glm::mat4& projection)
 			: Camera(projection) {}
 
+		const char* Name() { return "Camera"; }
 	};
 
 	struct CameraAttachmentComponent
@@ -90,12 +100,15 @@ namespace EDNA {
 
 		bool Active = true;
 		float SmoothingFactor = 0.0f;
-		glm::vec3 Offset = { 0.f, 0.f, 0.f };
+		glm::vec3 Offset = { 0.f, 0.5f, 1.f };
+		glm::vec3 Direction = { 0.f, 0.5f, -1.f };
 
 		CameraAttachmentComponent() = default;
 		CameraAttachmentComponent(const CameraAttachmentComponent&) = default;
 		CameraAttachmentComponent(const float& smoothing, const glm::vec3& offset)
 			: SmoothingFactor(smoothing), Offset(offset)  {}
+
+		const char* Name() { return "CameraAttachment"; }
 	};
 
 
@@ -106,6 +119,8 @@ namespace EDNA {
 		RenderableComponent(const RenderableComponent&) = default;
 		RenderableComponent(const bool& visible)
 			: Visible(visible) {}
+
+		const char* Name() { return "Renderable"; }
 	};
 
 	struct ShadowCasterComponent
@@ -115,6 +130,8 @@ namespace EDNA {
 		ShadowCasterComponent(const ShadowCasterComponent&) = default;
 		ShadowCasterComponent(const bool& visible)
 			: Visible(visible) {}
+
+		const char* Name() { return "ShadowCaster"; }
 	};
 
 	struct MeshComponent
@@ -126,6 +143,7 @@ namespace EDNA {
 		MeshComponent(const Mesh mesh)
 			: MeshData(mesh) {}
 	
+		const char* Name() { return "Mesh"; }
 	};
 
 	struct PlayerInputComponent
@@ -148,6 +166,8 @@ namespace EDNA {
 
 		PlayerInputComponent() = default;
 		PlayerInputComponent(const PlayerInputComponent&) = default;
+
+		const char* Name() { return "PlayerInput"; }
 	};
 
 }

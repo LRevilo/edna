@@ -1,4 +1,4 @@
-vec4 Phong_CalculateLighting(vec3 lightPos, vec3 lightColor, vec3 viewPos, vec3 fragPos, vec3 fragNormal, vec3 fragColor, float shadow) 
+vec4 Phong_CalculateLighting(vec3 lightPos, vec3 lightColor, vec3 viewPos, vec3 fragPos, vec3 fragNormal, float shadow) 
 {
 
     vec3 normal = normalize(fragNormal);
@@ -19,7 +19,7 @@ vec4 Phong_CalculateLighting(vec3 lightPos, vec3 lightColor, vec3 viewPos, vec3 
     vec3 specular = spec * lightColor;    
 
 
-    vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * fragColor;  
+    vec3 lighting = ambient + (1.0 - shadow) * (diffuse + specular);
 
     return vec4(lighting,1.0);
 }

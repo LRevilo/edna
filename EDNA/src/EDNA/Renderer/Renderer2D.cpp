@@ -99,8 +99,9 @@ namespace EDNA {
 		int32_t samplers[s_Data.MaxTextureSlots];
 		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++) { samplers[i] = i;}
 
-
+		// giving error ?
 		Renderer::Shaders()->Load("Texture", "../EDNA/src/EDNA/Shaders/Texture.glsl");
+
 		s_Data.TextureShader = Renderer::Shaders()->Get("Texture");
 
 		s_Data.TextureShader->Bind();

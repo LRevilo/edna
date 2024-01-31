@@ -4,6 +4,9 @@
 #include "EDNA/Core/Timestep.h"
 #include "EDNA/Events/Event.h"
 
+#include "imgui.h"
+#include "imgui_internal.h"
+
 
 namespace EDNA {
 

@@ -146,7 +146,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\EDNA\Generators\Generator.h" />
     <ClInclude Include="src\EDNA.h" />
     <ClInclude Include="src\EDNA\Audio\AudioBuffer.h" />
     <ClInclude Include="src\EDNA\Audio\AudioEngine.h" />
@@ -168,6 +167,7 @@
     <ClInclude Include="src\EDNA\Events\Event.h" />
     <ClInclude Include="src\EDNA\Events\KeyEvent.h" />
     <ClInclude Include="src\EDNA\Events\MouseEvent.h" />
+    <ClInclude Include="src\EDNA\Generators\Generator.h" />
     <ClInclude Include="src\EDNA\Generators\Noise.h" />
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\EDNA\Renderer\Buffer.h" />
@@ -190,6 +190,7 @@
     <ClInclude Include="src\EDNA\Scene\Entity.h" />
     <ClInclude Include="src\EDNA\Scene\Scene.h" />
     <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\EDNA\UI\UI.h" />
     <ClInclude Include="src\EDNA\UI\UILayer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
@@ -619,7 +620,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EDNA\Generators\Generator.cpp" />
     <ClCompile Include="src\EDNA\Audio\AudioBuffer.cpp" />
     <ClCompile Include="src\EDNA\Audio\AudioEngine.cpp" />
     <ClCompile Include="src\EDNA\Audio\SoundDevice.cpp" />
@@ -628,6 +628,7 @@
     <ClCompile Include="src\EDNA\Core\LayerStack.cpp" />
     <ClCompile Include="src\EDNA\Core\Log.cpp" />
     <ClCompile Include="src\EDNA\Core\UUID.cpp" />
+    <ClCompile Include="src\EDNA\Generators\Generator.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\EDNA\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\EDNA\Renderer\Buffer.cpp" />

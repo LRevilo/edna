@@ -55,7 +55,9 @@ project "EDNA"
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/vendor/glm/glm/**.inl",
+		--"%{prj.name}/vendor/imgui/**.h",
+		--"%{prj.name}/vendor/imgui/**.cpp"
 
 
 	}
@@ -145,6 +147,7 @@ project "GamePrototype"
 		"EDNA/src",
 		"EDNA/vendor",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.OpenAL_Soft}",
 		"%{IncludeDir.libsndfile}"

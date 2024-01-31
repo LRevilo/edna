@@ -1,6 +1,7 @@
 #pragma once
 #include "EDNA.h"
 
+
 namespace EDNA {
 
 	struct PlayerData
@@ -57,8 +58,16 @@ namespace EDNA {
 		virtual void OnImGuiRender() override;
 		void OnEvent(Event&) override;
 
+		void LoadShaders();
+
+
+
+		void UIStyleColorsTransparent();
 		Entity CreateCube(glm::vec3 pos, glm::vec4 color = glm::vec4(1.f, 1.f, 1.f, 1.f));
 		void GenerateNoiseTexture(float scale, int seed, float x = 0, float y = 0 );
+		void CreateFloorPlane(int x, int y, float scale);
+
+
 
 	private:
 

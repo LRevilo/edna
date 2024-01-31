@@ -56,6 +56,9 @@ namespace EDNA {
 		shader->SetUInt("u_LowerBits", lower32bits);
 		shader->SetUInt("u_UpperBits", upper32bits);
 
+		shader->SetFloat("u_Time", m_Time);
+		shader->SetFloat("u_Angle", m_Angle);
+
 
 	}
 

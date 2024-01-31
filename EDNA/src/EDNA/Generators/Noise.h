@@ -1,6 +1,6 @@
 #pragma once
 namespace Noise {
-
+	// make sure to change the shader equivalent if this gets modified
 	inline float SmoothStep(float z)
 	{
 		return z * z * (3.0 - 2.0 * z);
@@ -40,7 +40,7 @@ namespace Noise {
 		static const int scalar = 16777215; // 2^24 - 1
 		static const float inv_scalar = 1.f/16777215.f; // 2^24 - 1
 
-		float n0 = (Squirrel2D(x_floor, y_floor, seed) & scalar)*inv_scalar;
+		float n0 = (Squirrel2D(x_floor, y_floor, seed) & scalar) * inv_scalar;
 		float n1 = (Squirrel2D(x_floor + 1, y_floor, seed) & scalar) * inv_scalar;
 		float n2 = (Squirrel2D(x_floor, y_floor + 1, seed) & scalar) * inv_scalar;
 		float n3 = (Squirrel2D(x_floor +1, y_floor +1, seed)& scalar) * inv_scalar;
@@ -53,4 +53,15 @@ namespace Noise {
 		return g0;
 	}
 
+	inline float ArctanType(float x)
+	{
+		// pi/2
+		return 1.57079632679 * x / (1.0 + abs(x));
+	}
+
+	inline float CosType(float x)
+	{
+		// 4/pi^2
+		return 1.0 - 0.405284734569 * x * x;
+	}
 }

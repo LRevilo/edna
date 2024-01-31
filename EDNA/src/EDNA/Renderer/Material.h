@@ -45,6 +45,8 @@ namespace EDNA {
 		void UploadBuffers() override;
 
 		uint64_t Bits = 0;
+		float m_Time = 0;
+		float m_Angle = 0;
 
 	};
 

@@ -19,6 +19,9 @@
     <Filter Include="src\EDNA\Events">
       <UniqueIdentifier>{188A264E-8415-9412-8D26-1707F930F012}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\EDNA\Generators">
+      <UniqueIdentifier>{5D49B593-C9AA-92A1-5218-D953BE78C960}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\EDNA\ImGui">
       <UniqueIdentifier>{DE5C3C6F-CA2A-3075-B3BE-A09B9F2B0CDA}</UniqueIdentifier>
     </Filter>
@@ -27,6 +30,9 @@
     </Filter>
     <Filter Include="src\EDNA\Scene">
       <UniqueIdentifier>{D154EC6F-BD22-E075-A6B6-509C9223BCDA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EDNA\UI">
+      <UniqueIdentifier>{61B7B270-CD6C-2B66-5661-253DC215226A}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
@@ -126,6 +132,12 @@
     <ClInclude Include="src\EDNA\Events\MouseEvent.h">
       <Filter>src\EDNA\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\EDNA\Generators\Generator.h">
+      <Filter>src\EDNA\Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\Generators\Noise.h">
+      <Filter>src\EDNA\Generators</Filter>
+    </ClInclude>
     <ClInclude Include="src\EDNA\ImGui\ImGuiLayer.h">
       <Filter>src\EDNA\ImGui</Filter>
     </ClInclude>
@@ -188,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="src\EDNA\Scene\ScriptableEntity.h">
       <Filter>src\EDNA\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EDNA\UI\UILayer.h">
+      <Filter>src\EDNA\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1467,9 +1482,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\EDNA\UI\UILayer.h" />
-    <ClInclude Include="src\EDNA\Generators\Generator.h" />
-    <ClInclude Include="src\EDNA\Generators\Noise.h" />
+    <ClInclude Include="src\EDNA\UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EDNA\Audio\AudioBuffer.cpp">
@@ -1495,6 +1508,9 @@
     </ClCompile>
     <ClCompile Include="src\EDNA\Core\UUID.cpp">
       <Filter>src\EDNA\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EDNA\Generators\Generator.cpp">
+      <Filter>src\EDNA\Generators</Filter>
     </ClCompile>
     <ClCompile Include="src\EDNA\ImGui\ImGuiBuild.cpp">
       <Filter>src\EDNA\ImGui</Filter>
@@ -1553,6 +1569,9 @@
     <ClCompile Include="src\EDNA\Scene\Scene.cpp">
       <Filter>src\EDNA\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\EDNA\UI\UILayer.cpp">
+      <Filter>src\EDNA\UI</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1586,7 +1605,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\EDNA\UI\UILayer.cpp" />
-    <ClCompile Include="src\EDNA\Generators\Generator.cpp" />
   </ItemGroup>
 </Project>

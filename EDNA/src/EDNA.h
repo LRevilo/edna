@@ -49,6 +49,9 @@
 #include "EDNA/Renderer/OrthographicCamera.h"
 // ------------------------
 
+#include "EDNA/UI/UI.h"
+
+
 // Generators
 #include "EDNA/Generators/Generator.h"
 

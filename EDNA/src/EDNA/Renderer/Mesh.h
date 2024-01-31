@@ -162,6 +162,7 @@ namespace EDNA {
         void CubeMesh(glm::vec4 color = glm::vec4(1.f, 1.f, 1.f, 1.f));
         void PlaneMesh(float scale);
         void PlaneMesh(float scale, int sidePoints);
+        void FloorPlaneMesh(glm::vec2 offset, float scale, int sidePoints);
 
 
 

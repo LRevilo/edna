@@ -309,10 +309,11 @@ namespace EDNA {
 
 	std::string OpenGLShader::ReplaceIncludes(const std::string& source)
 	{	
-		// TODO: need to refactor chat gpt code?
+		// TODO: need to refactor chat gpt code? -- fixed multiple matches not being replaced
 		// Replaces #include "somefile.glsl" with the actual code
 		
 		// Use a regex to match #include "somefilename.txt" lines
+
 		std::regex includeRegex(R"(\s*#include\s*"\s*(.*?)\s*")");
 
 		// Create a match object to store the result
@@ -323,13 +324,16 @@ namespace EDNA {
 		while (std::regex_search(result, match, includeRegex)) {
 			try {
 				// Read the content of the file
+				EDNA_CORE_INFO(match[1].str() + " matched");
 				std::ifstream file(match[1]);
 				if (file.is_open()) {
 					std::ostringstream fileContent;
 					fileContent << file.rdbuf();
 
+
 					// Replace the entire #include line with the file content
-					result = std::regex_replace(result, includeRegex, "\r\n" + fileContent.str());
+					std::regex matchRegex(match[0].str());
+					result = std::regex_replace(result, matchRegex, "\r\n" + fileContent.str() + "\r\n");
 					file.close();
 				}
 				else {

@@ -52,12 +52,15 @@ namespace EDNA {
 
 
 		RenderCommand::Init();
+
 		Renderer2D::Init();
 
+
 		EDNA_CORE_INFO("Load shader");
-		Shaders()->Load("3DShader", "../EDNA/src/EDNA/Shaders/3DShader.glsl");
+		Renderer::Shaders()->Load("3DShader", "../EDNA/src/EDNA/Shaders/3DShader.glsl");
 		Renderer::Shaders()->Load("DebugShader", "../EDNA/src/EDNA/Shaders/DebugShader.glsl");
-		// Shaders()->Load("Texture", "../EDNA/src/EDNA/Shaders/Texture.glsl");
+		
+		//Shaders()->Load("Texture", "../EDNA/src/EDNA/Shaders/Texture.glsl");
 
 
 

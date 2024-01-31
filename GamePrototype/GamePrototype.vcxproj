@@ -82,7 +82,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\imgui;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\imgui;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -120,7 +120,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>EDNA_PLATFORM_WINDOWS;AL_LIBTYPE_STATIC;EDNA_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\EDNA\vendor\spdlog\include;..\EDNA\src;..\EDNA\vendor;..\EDNA\vendor\glm;..\EDNA\vendor\imgui;..\EDNA\vendor\entt\include;..\EDNA\vendor\OpenAL-Soft\include;..\EDNA\vendor\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -137,13 +137,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Scripts\CameraController.h" />
     <ClInclude Include="src\GameApp2D.h" />
     <ClInclude Include="src\MainLayer.h" />
+    <ClInclude Include="src\Scripts\CameraController.h" />
     <ClInclude Include="src\Scripts\PlayerMovementScript.h" />
+    <ClInclude Include="src\Scripts\RandomMovementScript.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Scripts\RandomMovementScript.h" />
     <ClCompile Include="src\GameApp.cpp" />
     <ClCompile Include="src\GameApp2D.cpp" />
     <ClCompile Include="src\MainLayer.cpp" />
